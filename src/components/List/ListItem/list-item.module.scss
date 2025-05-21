@@ -1,0 +1,15 @@
+.list-item {
+  transition: background-color 0.2s ease-in-out;
+
+  svg {
+    transition: stroke 0.2s ease-in-out;
+    stroke: var(--highlight);
+  }
+
+  &:hover {
+    background-color: var(--card-hover);
+    svg {
+      stroke: var(--tertiary);
+    }
+  }
+}

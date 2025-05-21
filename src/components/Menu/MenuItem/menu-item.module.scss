@@ -1,0 +1,12 @@
+.menu-item {
+  svg {
+    transition: stroke 0.2s ease-in-out;
+		stroke: var(--highlight);
+  }
+
+  &:hover  {
+    svg {
+      stroke: var(--tertiary);
+    }
+  }
+}
