@@ -1,9 +1,5 @@
-import { Box } from "@/components/Box";
-import { Heading } from "@/components/Heading";
 import { List } from "@/components/List";
 import { ProjectListItem } from "@/components/ProjectListitem";
-import { Text } from "@/components/Text";
-import Image from "next/image";
 
 export const Projects = () => {
   return (

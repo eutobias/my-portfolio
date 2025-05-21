@@ -1,38 +1,8 @@
-import { IconProps } from "@/components/Icon";
 import { Menu } from "@/components/Menu";
+import { links } from "@/data/navigation.data";
+// type NavigationProps = {};
 
-type NavigationProps = {};
-
-type MenuLinksItemType = {
-  label: string;
-  icon: IconProps["icon"];
-  href: string;
-};
-
-export const Navigation = ({}: NavigationProps) => {
-  const links: MenuLinksItemType[] = [
-    {
-      label: "Home",
-      icon: "home",
-      href: "/",
-    },
-    {
-      label: "Projects",
-      icon: "folder",
-      href: "/projects",
-    },
-    {
-      label: "About",
-      icon: "user",
-      href: "/about",
-    },
-    {
-      label: "Contact",
-      icon: "mail",
-      href: "/contact",
-    },
-  ];
-
+export const Navigation = () => {
   return (
     <Menu>
       {links.map((link, index) => (

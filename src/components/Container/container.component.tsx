@@ -11,9 +11,7 @@ export const Container: React.FC<ContainerProps> = ({
   className = "",
 }) => {
   return (
-    <div
-      className={`mx-auto w-full lg:max-w-3xl ${className}`}
-    >
+    <div className={classNames(`mx-auto w-full lg:max-w-3xl`, className)}>
       {children}
     </div>
   );
