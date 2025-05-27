@@ -1,6 +1,5 @@
 import { Menu } from "@/components/Menu";
 import { links } from "@/data/navigation.data";
-// type NavigationProps = {};
 
 export const Navigation = () => {
   return (
