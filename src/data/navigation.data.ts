@@ -1,6 +1,6 @@
 import { IconProps } from "@/components/Icon";
 
-type NavigationItem = {
+interface NavigationItem {
   label: string;
   icon: IconProps["icon"];
   href: string;

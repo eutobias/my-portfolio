@@ -3,10 +3,10 @@ import { ListTitle } from "@/components/List/ListTitle";
 import { RoundedBox } from "@/components/RoundedBox";
 import { classNames } from "@/lib/classNames";
 
-type ListProps = {
+interface ListProps {
   children: React.ReactNode;
   className?: string;
-};
+}
 
 const List = ({ children, className = "" }: ListProps) => {
   return (

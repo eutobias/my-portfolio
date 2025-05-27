@@ -4,7 +4,7 @@ import { Text } from "@/components/Text";
 import styles from "./project-list-item.module.scss";
 import { classNames } from "@/lib/classNames";
 
-export type ProjectListItemProps = {
+export interface ProjectListItemProps {
   title?: string;
   content?: string;
   imageUrl?: string;

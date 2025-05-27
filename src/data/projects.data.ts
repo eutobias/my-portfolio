@@ -1,13 +1,13 @@
-type ProjectImages = {
-  src: string
-  alt: string
-}
+interface ProjectImages {
+  src: string;
+  alt: string;
+};
 
-export type Project = {
-  name: string
-  description: string
-  images: ProjectImages[]
-}
+export interface Project {
+  name: string;
+  description: string;
+  images: ProjectImages[];
+};
 
 export const projects: Project[] = [
   {
@@ -51,5 +51,5 @@ export const projects: Project[] = [
         alt: "E-commerce 3",
       },
     ],
-  }
-]
+  },
+];
