@@ -3,6 +3,7 @@ import { Heading } from "@/components/Heading";
 import { Text } from "@/components/Text";
 import styles from "./project-list-item.module.scss";
 import { classNames } from "@/lib/classNames";
+import { truncate } from "@/lib/truncate";
 
 export interface ProjectListItemProps {
   title?: string;
@@ -17,6 +18,7 @@ export const ProjectListItem = ({
   imageUrl,
   imageAlt = "",
 }: ProjectListItemProps) => {
+  
   return (
     <Box
       className={classNames(styles["project-list-item"], "gap-4 items-center")}
@@ -30,7 +32,7 @@ export const ProjectListItem = ({
       )}
       <Box className="flex-col">
         {title && <Heading level={5}>{title}</Heading>}
-        {content && <Text variant="body">{content}</Text>}
+        {content && <Text variant="body">{truncate(content)}</Text>}
       </Box>
     </Box>
   );
