@@ -8,8 +8,9 @@ interface TwoItemProps {
 }
 
 export const TwoItems = ({ images }: TwoItemProps) =>
-  images.map((image) => (
+  images.map((image, index) => (
     <SimpleImage
+      key={`TwoItems-image-${index}`}
       src={image.src}
       alt={image?.alt}
       className="row-spawn-1"

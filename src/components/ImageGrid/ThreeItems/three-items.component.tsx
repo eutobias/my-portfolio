@@ -15,6 +15,7 @@ export const ThreeItems = ({ images }: ThreeItemsProps) => {
 
   return images.map((image, index) => (
     <SimpleImage
+      key={`ThreeItems-image-${index}`}
       src={image.src}
       alt={image?.alt}
       className={classNames(dynamicClasses(index))}

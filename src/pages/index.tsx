@@ -11,18 +11,7 @@ export default function Home() {
       <ThemeToggle />
       <Navigation />
       <About />
-      <Projects />
-
-      <ImageGrid images={[
-        { src: "https://placehold.co/800x1600" },
-        { src: "https://placehold.co/600x2400" },
-        { src: "https://placehold.co/800x1600" },
-        { src: "https://placehold.co/600x2400" },
-        { src: "https://placehold.co/800x1600" },
-        // { src: "https://placehold.co/600x2400" },
-        // { src: "https://placehold.co/600x2400" },
-        // { src: "https://placehold.co/800x1600" },
-        ]} />
+      <Projects isAtHomePage={true} />
     </Container>
   );
 }

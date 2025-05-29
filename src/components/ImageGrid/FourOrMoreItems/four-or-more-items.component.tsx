@@ -16,6 +16,7 @@ export const FourOrMoreItems = ({ images }: FourOrMoreItemsProps) => {
   return images.map((image, index) => {
     return (
       <SimpleImage
+        key={`FourOrMoreItems-image-${index}`}
         src={image.src}
         alt={image?.alt}
         className={classNames(dynamicClasses(index))}
