@@ -24,8 +24,8 @@ export const CustomLink = ({
     hover:opacity-70`;
 
   const variantStyles = {
-    primary: "text-highlight",
-    secondary: "text-tertiary",
+    primary: "text-highlight hover:text-tertiary",
+    secondary: "text-tertiary hover:text-highlight",
   };
 
   const sizeStyles = {

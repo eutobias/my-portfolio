@@ -11,7 +11,7 @@ export const SimpleImage = ({ src, alt = "", className = "" }: SimpleImageProps)
     <img
       src={src}
       alt={alt}
-      className={classNames("object-cover w-full max-h-[200px] lg:max-h-[316px]", className)}
+      className={classNames("object-cover w-full max-h-[200px] lg:max-h-[316px] rounded-2xl", className)}
     />
   );
 };

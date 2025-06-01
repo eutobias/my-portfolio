@@ -17,16 +17,16 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    name: "Analitica Pharmacy",
-    slug: "analitica-pharmacy",
+    name: "Farmácia Analitica",
+    slug: "farmacia-analitica",
     description:
-      "A modern and responsive institutional website for Analitica Pharmacy, focused on usability, clean design, and clear information for the public. The project was created to strengthen the pharmacy's digital presence, highlighting its services, promotions, and unique approach to pharmaceutical care.",
+      "Site institucional moderno e responsivo para a Farmácia Analitica, com foco em usabilidade, design clean e informações claras para o público. O projeto foi criado para fortalecer a presença digital da farmácia, destacando seus serviços, promoções e diferencial no atendimento farmacêutico.",
     frontend: ["React.js", "Next.js", "TypeScript", "Tailwind CSS"],
     backend: ["Node.js", "Express"],
     images: [
       {
         src: "/images/analitica.jpg",
-        alt: "Analitica Pharmacy website home page",
+        alt: "Home do site da farmacia analitica",
       },
     ],
   },
@@ -35,7 +35,7 @@ export const projects: Project[] = [
     name: "Bica On Tap",
     slug: "bica-on-tap",
     description:
-      "A vibrant and cool website made for people who enjoy drinks, craft beers, and exclusive cocktails. The project was designed to be visually impactful, with intuitive navigation and a fun touch.",
+      "Um site vibrante e descolado feito para a galera que curte drinks, cervejas artesanais e drinks exclusivos. O projeto foi pensado para ser visualmente impactante, com navegação intuitiva e um toque de diversão.",
     frontend: ["HTML", "CSS", "JavaScript", "Pug Template Engine"],
     backend: ["Express"],
     images: [
@@ -67,50 +67,50 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    name: "Mariana Alves Portfolio",
-    slug: "mariana-alves-portfolio",
+    name: "Portfólio Mariana Alves",
+    slug: "portfolio-mariana-alves",
     description:
-      "Portfolio for the designer, focused on showcasing her work in an elegant and functional way. The design reflects her professional identity: clean, sophisticated, and user-centered, allowing visitors to explore her projects smoothly and easily connect with her work.",
+      "Portfólio da designer, com foco em destacar seu trabalho de forma elegante e funcional. O design reflete sua identidade profissional: clean, sofisticado e centrado na experiência do usuário, permitindo que visitantes explorem seus projetos com fluidez e se conectem facilmente com seu trabalho.",
     frontend: ["HTML", "CSS", "JavaScript", "Pug Template Engine"],
     images: [
       {
         src: "/images/portfolio_mari.jpg",
-        alt: "Portfolio website home page",
+        alt: "Home do site do portfólio",
       },
     ],
   },
   {
     id: 4,
-    name: "Stone Institutional Website",
-    slug: "stone-institutional-website",
+    name: "Site institucional - Stone",
+    slug: "site-institucional-stone",
     description:
-      "Institutional website for Stone, a fintech operating in the digital payments sector in Brazil. The project combines technology, trust, and innovation in a fluid digital experience that simplifies financial complexity and highlights Stone's unique benefits.",
+      "Site institucional da Stone, fintech que atua no ramo de pagamentos digitais no Brasil. O projeto combina tecnologia, confiança e inovação em uma experiência digital fluida, que simplifica a complexidade financeira e destaca os benefícios exclusivos da Stone.",
     frontend: ["HTML", "CSS", "JavaScript", "Pug Template Engine"],
     images: [
       {
         src: "/images/stone1.jpg",
-        alt: "Home page of the Stone website",
+        alt: "Home do site",
       },
       {
         src: "/images/stone2.jpg",
-        alt: "Solutions page",
+        alt: "Página soluções",
       },
       {
         src: "/images/stone3.jpg",
-        alt: "Education page",
+        alt: "HPágina educação",
       },
       {
         src: "/images/stone4.jpg",
-        alt: "Careers page",
+        alt: "Página carreiras",
       },
     ],
   },
   {
     id: 5,
-    name: "Item Management System - Arcotech",
-    slug: "item-management-system-arcotech",
+    name: "Gestora de Itens - Arcotech",
+    slug: "gestora-de-itens-arcotech",
     description:
-      "During my time as a collaborator at Arcotech, I worked on the integrated question bank management system to serve school networks with over 10,000 schools nationwide. This platform centralizes the creation, classification, and application of questions for assessments, optimizing the educational process from creation to results analysis.",
+      "Durante o período que fui coladorador na Arcotech, atuei no sistema integrado de gestão de bancos de questões para atender redes de ensino com mais de 10 mil escolas em território nacional. Esta plataforma centraliza a criação, classificação e aplicação de questões para avaliações, otimizando o processo educacional desde a elaboração até a análise de resultados.",
     frontend: [
       "React.js",
       "Next.js",
@@ -145,10 +145,10 @@ export const projects: Project[] = [
   },
   {
     id: 6,
-    name: "Widgets and A/B Testing - Oi",
-    slug: "widgets-ab-testing-oi",
+    name: "Widgets e Testes A/B - Oi",
+    slug: "widgets-e-testes-ab-oi",
     description:
-      "During my time as a collaborator in the A/B Testing Squad at Oi, one of the largest telecommunications companies in Brazil, I was responsible for developing and implementing several strategic pages on the institutional website and sales funnels. My work focused on optimizing user experience, increasing conversions, and validating hypotheses through controlled experiments.",
+      "Durante meu período como colaborador no Squad de Testes A/B da Oi, uma das maiores empresas de telecomunicações do Brasil, fui responsável pelo desenvolvimento e implementação de diversas telas estratégicas no site institucional e funis de vendas. Meu trabalho focou em otimizar a experiência do usuário, aumentar conversões e validar hipóteses por meio de experimentos controlados.",
     frontend: ["React.js", "Redux"],
     images: [
       {

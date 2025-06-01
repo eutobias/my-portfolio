@@ -1,10 +1,7 @@
-import { Box } from "@/components/Box";
-import { Button } from "@/components/Button";
-import { CustomLink } from "@/components/CustomLink";
-import { Icon } from "@/components/Icon";
 import { List } from "@/components/List";
 import { ProjectListItem } from "@/components/ProjectListitem";
 import { projects } from "@/data/projects.data";
+import Link from "next/link";
 
 interface ProjectsProps {
   isAtHomePage?: boolean;
@@ -13,11 +10,12 @@ interface ProjectsProps {
 export const Projects = ({ isAtHomePage = false }: ProjectsProps) => {
   const projectsAvailableList = isAtHomePage ? projects.slice(0, 3) : projects;
 
+  
   return (
-    <>
-      <List className="mt-8">
-        <List.Title>Projects</List.Title>
-        {projectsAvailableList.map((project, index) => (
+    <List className="mt-8">
+      <List.Title>Projects</List.Title>
+      {projectsAvailableList.map((project, index) => (
+        <Link href={`/projects/${project.slug}`}>
           <List.Item key={`project-list-item-${index}`}>
             <ProjectListItem
               title={project.name}
@@ -26,10 +24,15 @@ export const Projects = ({ isAtHomePage = false }: ProjectsProps) => {
               imageAlt={project.images[0].alt}
             />
           </List.Item>
-        ))}
+        </Link>
+      ))}
 
+      {isAtHomePage && (
         <List.ViewMore href="/projects">View all projects</List.ViewMore>
-      </List>
-    </>
+      )}
+      {!isAtHomePage && (
+        <List.ViewMore href="/">Back to home</List.ViewMore>
+      )}
+    </List>
   );
 };
