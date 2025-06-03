@@ -1,6 +1,7 @@
-interface ProjectImages {
+export interface ProjectImages {
   src: string;
   alt: string;
+  thumb: string;
 }
 
 export interface Project {
@@ -27,6 +28,7 @@ export const projects: Project[] = [
       {
         src: "/images/analitica.jpg",
         alt: "Analitica Pharmacy website home page",
+        thumb: "/images/analitica_thumb.jpg",
       },
     ],
   },
@@ -42,26 +44,32 @@ export const projects: Project[] = [
       {
         src: "/images/bica1.jpg",
         alt: "",
+        thumb: "/images/bica1_thumb.jpg",
       },
       {
         src: "/images/bica2.jpg",
         alt: "",
+        thumb: "/images/bica2_thumb.jpg",
       },
       {
         src: "/images/bica3.jpg",
         alt: "",
+        thumb: "/images/bica3_thumb.jpg",
       },
       {
         src: "/images/bica4.jpg",
         alt: "",
+        thumb: "/images/bica4_thumb.jpg",
       },
       {
         src: "/images/bica5.jpg",
         alt: "",
+        thumb: "/images/bica5_thumb.jpg",
       },
       {
         src: "/images/bica6.jpg",
         alt: "",
+        thumb: "/images/bica6_thumb.jpg",
       },
     ],
   },
@@ -76,6 +84,7 @@ export const projects: Project[] = [
       {
         src: "/images/portfolio_mari.jpg",
         alt: "Portfolio website home page",
+        thumb: "/images/portfolio_mari_thumb.jpg",
       },
     ],
   },
@@ -90,18 +99,22 @@ export const projects: Project[] = [
       {
         src: "/images/stone1.jpg",
         alt: "Home page of the Stone website",
+        thumb: "/images/stone1_thumb.jpg",
       },
       {
         src: "/images/stone2.jpg",
         alt: "Solutions page",
+        thumb: "/images/stone2_thumb.jpg",
       },
       {
         src: "/images/stone3.jpg",
         alt: "Education page",
+        thumb: "/images/stone3_thumb.jpg",
       },
       {
         src: "/images/stone4.jpg",
         alt: "Careers page",
+        thumb: "/images/stone4_thumb.jpg",
       },
     ],
   },
@@ -124,22 +137,27 @@ export const projects: Project[] = [
       {
         src: "/images/gestora_de_itens_1.jpg",
         alt: "",
+        thumb: "/images/gestora_de_itens_1_thumb.jpg",
       },
       {
         src: "/images/gestora_de_itens_2.jpg",
         alt: "",
+        thumb: "/images/gestora_de_itens_2_thumb.jpg",
       },
       {
         src: "/images/gestora_de_itens_3.jpg",
         alt: "",
+        thumb: "/images/gestora_de_itens_3_thumb.jpg",
       },
       {
         src: "/images/gestora_de_itens_4.jpg",
         alt: "",
+        thumb: "/images/gestora_de_itens_4_thumb.jpg",
       },
       {
         src: "/images/gestora_de_itens_5.jpg",
         alt: "",
+        thumb: "/images/gestora_de_itens_5_thumb.jpg",
       },
     ],
   },
@@ -154,54 +172,67 @@ export const projects: Project[] = [
       {
         src: "/images/oi1.jpg",
         alt: "",
+        thumb: "/images/oi1_thumb.jpg",
       },
       {
         src: "/images/oi2.jpg",
         alt: "",
+        thumb: "/images/oi2_thumb.jpg",
       },
       {
         src: "/images/oi3.jpg",
         alt: "",
+        thumb: "/images/oi3_thumb.jpg",
       },
       {
         src: "/images/oi4.jpg",
         alt: "",
+        thumb: "/images/oi4_thumb.jpg",
       },
       {
         src: "/images/oi5.jpg",
         alt: "",
+        thumb: "/images/oi5_thumb.jpg",
       },
       {
         src: "/images/oi6.jpg",
         alt: "",
+        thumb: "/images/oi6_thumb.jpg",
       },
       {
         src: "/images/oi7.jpg",
         alt: "",
+        thumb: "/images/oi7_thumb.jpg",
       },
       {
         src: "/images/oi8.jpg",
         alt: "",
+        thumb: "/images/oi8_thumb.jpg",
       },
       {
         src: "/images/oi9.jpg",
         alt: "",
+        thumb: "/images/oi9_thumb.jpg",
       },
       {
         src: "/images/oi10.jpg",
         alt: "",
+        thumb: "/images/oi10_thumb.jpg",
       },
       {
         src: "/images/oi11.jpg",
         alt: "",
+        thumb: "/images/oi11_thumb.jpg",
       },
       {
         src: "/images/oi12.jpg",
         alt: "",
+        thumb: "/images/oi12_thumb.jpg",
       },
       {
         src: "/images/oi13.jpg",
         alt: "",
+        thumb: "/images/oi13_thumb.jpg",
       },
     ],
   },

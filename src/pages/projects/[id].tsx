@@ -1,11 +1,25 @@
-import { Container } from "@/components/Container";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { Navigation } from "@/widgets/Navigation";
+import { Project, projects } from "@/data/projects.data";
 import { ProjectDetail } from "@/widgets/ProjectDetail";
-import { Projects } from "@/widgets/Projects/projects.component";
+import { GetServerSidePropsContext } from "next";
+import { notFound } from "next/navigation";
 
-export default function ProjectPage() {
-  return (
-    <ProjectDetail />
+interface ProjectPageProps {
+  project: Project;
+}
+
+ProjectPage.getInitialProps = async(context: GetServerSidePropsContext) => {
+  const { query } = context
+
+  const project = projects.find(
+    (project) => project.slug === query?.id
   );
+
+  return {  project };
+}
+
+export default function ProjectPage({ project }: ProjectPageProps) {
+
+  if (!project) notFound();
+
+  return <ProjectDetail project={project} />;
 }

@@ -5,16 +5,13 @@ import { Icon } from "@/components/Icon";
 import { ImageGrid } from "@/components/ImageGrid";
 import { RoundedBox } from "@/components/RoundedBox";
 import { Text } from "@/components/Text";
-import { projects } from "@/data/projects.data";
-import { notFound } from "next/navigation";
-import { useRouter } from "next/router";
+import { Project } from "@/data/projects.data";
 
-export const ProjectDetail = () => {
-  const { query } = useRouter();
-  const project = projects.find((project) => String(project.slug) === query?.id);
+interface ProjectDetailProps {
+  project: Project;
+}
 
-  if (!project) notFound();
-
+export const ProjectDetail = ({ project }: ProjectDetailProps) => {
   return (
     <RoundedBox className="project-detail-widget flex-col gap-8 mt-8">
       <Heading level={2}>{project?.name}</Heading>

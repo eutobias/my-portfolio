@@ -1,10 +1,10 @@
 import {
-  SimpleImage,
-  SimpleImageProps,
+  SimpleImage
 } from "@/components/ImageGrid/SimpleImage";
+import { ProjectImages } from "@/data/projects.data";
 
 interface TwoItemProps {
-  images: SimpleImageProps[];
+  images: ProjectImages[];
 }
 
 export const TwoItems = ({ images }: TwoItemProps) =>
@@ -12,6 +12,7 @@ export const TwoItems = ({ images }: TwoItemProps) =>
     <SimpleImage
       key={`TwoItems-image-${index}`}
       src={image.src}
+      thumb={image.thumb}
       alt={image?.alt}
       className="row-spawn-1"
     />

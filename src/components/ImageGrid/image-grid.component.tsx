@@ -1,13 +1,14 @@
 import { Box } from "@/components/Box";
 import { FourOrMoreItems } from "@/components/ImageGrid/FourOrMoreItems";
 import { OneItem } from "@/components/ImageGrid/OneItem";
-import { SimpleImageProps } from "@/components/ImageGrid/SimpleImage";
 import { ThreeItems } from "@/components/ImageGrid/ThreeItems";
 import { TwoItems } from "@/components/ImageGrid/TwoItems";
+import { ProjectImages } from "@/data/projects.data";
 import { classNames } from "@/lib/classNames";
+import { PhotoProvider } from "react-photo-view";
 
 interface ImageGridProps {
-  images: SimpleImageProps[];
+  images: ProjectImages[];
 }
 
 export const ImageGrid = ({ images }: ImageGridProps) => {
@@ -20,10 +21,12 @@ export const ImageGrid = ({ images }: ImageGridProps) => {
 
   return (
     <Box className={classNames(wrapperDefaultClasses, dynamicClasses)}>
-      {images.length === 1 && <OneItem image={images[0]} />}
-      {images.length === 2 && <TwoItems images={images} />}
-      {images.length === 3 && <ThreeItems images={images} />}
-      {images.length >= 4 && <FourOrMoreItems images={images} />}
+      <PhotoProvider>
+        {images.length === 1 && <OneItem image={images[0]} />}
+        {images.length === 2 && <TwoItems images={images} />}
+        {images.length === 3 && <ThreeItems images={images} />}
+        {images.length >= 4 && <FourOrMoreItems images={images} />}
+      </PhotoProvider>
     </Box>
   );
 };

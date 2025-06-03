@@ -1,11 +1,9 @@
-import {
-  SimpleImage,
-  SimpleImageProps,
-} from "@/components/ImageGrid/SimpleImage";
+import { SimpleImage } from "@/components/ImageGrid/SimpleImage";
+import { ProjectImages } from "@/data/projects.data";
 import { classNames } from "@/lib/classNames";
 
 interface FourOrMoreItemsProps {
-  images: SimpleImageProps[];
+  images: ProjectImages[];
 }
 export const FourOrMoreItems = ({ images }: FourOrMoreItemsProps) => {
   const dynamicClasses = (index: number) => ({
@@ -18,6 +16,7 @@ export const FourOrMoreItems = ({ images }: FourOrMoreItemsProps) => {
       <SimpleImage
         key={`FourOrMoreItems-image-${index}`}
         src={image.src}
+        thumb={image.thumb}
         alt={image?.alt}
         className={classNames(dynamicClasses(index))}
       />

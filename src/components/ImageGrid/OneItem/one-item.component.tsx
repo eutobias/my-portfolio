@@ -1,9 +1,10 @@
+import { ProjectImages } from "@/data/projects.data";
 import { SimpleImage, SimpleImageProps } from "../SimpleImage";
 
 interface OneItemProps {
-  image: SimpleImageProps;
+  image: ProjectImages;
 }
 
 export const OneItem = ({ image }: OneItemProps) => (
-  <SimpleImage src={image.src} alt={image?.alt} />
+  <SimpleImage src={image.src} thumb={image.thumb} alt={image?.alt} />
 );

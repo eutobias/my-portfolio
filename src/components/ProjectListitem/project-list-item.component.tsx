@@ -31,7 +31,7 @@ export const ProjectListItem = ({
         />
       )}
       <Box className="flex-col">
-        {title && <Heading level={5}>{title}</Heading>}
+        {title && <Heading level={5} className="text-subline">{title}</Heading>}
         {content && <Text variant="body">{truncate(content)}</Text>}
       </Box>
     </Box>

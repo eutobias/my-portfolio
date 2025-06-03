@@ -1,17 +1,30 @@
 import { classNames } from "@/lib/classNames";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 export interface SimpleImageProps {
-  src: string;
+  thumb?: string;
+  src?: string;
   alt?: string;
   className?: string;
 }
 
-export const SimpleImage = ({ src, alt = "", className = "" }: SimpleImageProps) => {
+export const SimpleImage = ({
+  thumb,
+  src,
+  alt = "",
+  className = "",
+}: SimpleImageProps) => {
   return (
-    <img
-      src={src}
-      alt={alt}
-      className={classNames("object-cover w-full max-h-[200px] lg:max-h-[316px] rounded-2xl", className)}
-    />
+      <PhotoView src={src}>
+        <img
+          src={thumb}
+          alt={alt}
+          className={classNames(
+            "object-cover w-full max-h-[200px] lg:max-h-[316px] rounded-2xl",
+            className
+          )}
+        />
+      </PhotoView>
   );
 };

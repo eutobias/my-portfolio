@@ -1,13 +1,14 @@
 import { List } from "@/components/List";
 import { ProjectListItem } from "@/components/ProjectListitem";
-import { projects } from "@/data/projects.data";
+import { Project } from "@/data/projects.data";
 import Link from "next/link";
 
 interface ProjectsProps {
   isAtHomePage?: boolean;
+  projects: Project[];
 }
 
-export const Projects = ({ isAtHomePage = false }: ProjectsProps) => {
+export const Projects = ({ isAtHomePage = false, projects = []}: ProjectsProps) => {
   const projectsAvailableList = isAtHomePage ? projects.slice(0, 3) : projects;
 
   
@@ -20,7 +21,7 @@ export const Projects = ({ isAtHomePage = false }: ProjectsProps) => {
             <ProjectListItem
               title={project.name}
               content={project.description}
-              imageUrl={project.images[0].src}
+              imageUrl={project.images[0].thumb}
               imageAlt={project.images[0].alt}
             />
           </List.Item>

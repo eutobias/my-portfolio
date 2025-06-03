@@ -1,11 +1,9 @@
-import {
-  SimpleImage,
-  SimpleImageProps,
-} from "@/components/ImageGrid/SimpleImage";
+import { SimpleImage } from "@/components/ImageGrid/SimpleImage";
+import { ProjectImages } from "@/data/projects.data";
 import { classNames } from "@/lib/classNames";
 
 interface ThreeItemsProps {
-  images: SimpleImageProps[];
+  images: ProjectImages[];
 }
 export const ThreeItems = ({ images }: ThreeItemsProps) => {
   const dynamicClasses = (index: number) => ({
@@ -17,6 +15,7 @@ export const ThreeItems = ({ images }: ThreeItemsProps) => {
     <SimpleImage
       key={`ThreeItems-image-${index}`}
       src={image.src}
+      thumb={image.thumb}
       alt={image?.alt}
       className={classNames(dynamicClasses(index))}
     />
