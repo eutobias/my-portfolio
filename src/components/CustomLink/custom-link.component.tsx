@@ -8,6 +8,7 @@ interface CustomLinkProps extends LinkProps {
   size?: "small" | "medium" | "large";
   children: React.ReactNode;
   className?: string;
+  target?: HTMLLinkElement["target"];
 }
 
 export const CustomLink = ({

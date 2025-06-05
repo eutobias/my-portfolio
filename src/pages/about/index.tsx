@@ -1,10 +1,13 @@
-import { About } from "@/widgets/About";
-import { ExperienceTimeline } from "@/widgets/ExperienceTimeline";
+import { AboutExperience } from "@/widgets/AboutExperience";
+import { AboutSkills } from "@/widgets/AboutSkills";
+import { AboutSummary } from "@/widgets/AboutSummary";
 
 export default function AboutPage() {
   return (
     <>
-      <ExperienceTimeline />
+      <AboutSummary />
+      <AboutSkills />
+      <AboutExperience />
     </>
   );
 }

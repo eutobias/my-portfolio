@@ -16,7 +16,6 @@ export const Button = ({
   fullWidth = false,
   children,
   className,
-  onClick,
   ...props
 }: ButtonProps) => {
   const baseStyles = `${styles["button-component"]} font-semibold 
@@ -24,8 +23,8 @@ export const Button = ({
     w-auto active:translate-[2px] hover:opacity-70`;
 
   const variantStyles = {
-    primary: "bg-highlight text-background",
-    secondary: "bg-tertiary text-background",
+    primary: "bg-highlight text-background hover:bg-tertiary",
+    secondary: "bg-tertiary text-background hover:bg-highlight",
   };
 
   const sizeStyles = {
