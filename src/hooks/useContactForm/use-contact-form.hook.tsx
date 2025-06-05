@@ -115,7 +115,7 @@ export const useContactForm = (): UseContactFormReturn => {
 
       callback(true);
       resetState();
-    } catch (error) {
+    } catch {
       callback(false);
     }
 

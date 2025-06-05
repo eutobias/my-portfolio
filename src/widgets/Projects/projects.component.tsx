@@ -16,7 +16,7 @@ export const Projects = ({ isAtHomePage = false, projects = []}: ProjectsProps) 
     <List className="mt-8">
       <List.Title>Projects</List.Title>
       {projectsAvailableList.map((project, index) => (
-        <Link href={`/projects/${project.slug}`}>
+        <Link key={project.slug+index} href={`/projects/${project.slug}`}>
           <List.Item key={`project-list-item-${index}`}>
             <ProjectListItem
               title={project.name}

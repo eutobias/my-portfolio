@@ -16,7 +16,6 @@ export const CustomLink = ({
   size = "medium",
   children,
   className,
-  onClick,
   ...props
 }: CustomLinkProps) => {
   const baseStyles = `

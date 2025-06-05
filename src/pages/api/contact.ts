@@ -52,7 +52,7 @@ export default async function handler(
     key: apiKey,
   });
   try {
-    const data = await mg.messages.create(sandboxDomain, {
+    await mg.messages.create(sandboxDomain, {
       from: `Sandbox <postmaster@${sandboxDomain}>`,
       to: [mailTo],
       subject: mailSubject,
@@ -61,7 +61,7 @@ export default async function handler(
     });
 
     return res.status(200).json({status: 200, message: "Email sent successfully"});
-  } catch (error) {
+  } catch {
     return res.status(500).json({status: 500, message: "Email not sent"});
   }
 }

@@ -1,6 +1,5 @@
-import { Box } from "@/components/Box";
 import { classNames } from "@/lib/classNames";
-import React, { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 
 interface InputTextProps extends InputHTMLAttributes<HTMLInputElement> {
   asTextarea?: boolean;

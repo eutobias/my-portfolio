@@ -1,6 +1,5 @@
 import { Box } from "@/components/Box";
 import { Heading } from "@/components/Heading";
-import { Notification } from "@/components/Notification";
 import { RoundedBox } from "@/components/RoundedBox";
 import { Text } from "@/components/Text";
 import { ContactForm } from "@/widgets/ContactForm";

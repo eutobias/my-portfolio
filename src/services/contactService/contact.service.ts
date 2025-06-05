@@ -1,5 +1,5 @@
 export const ContactService = {
-  sendEmail: async (data: any) => {
+  sendEmail: async (data: Record<string, string>) => {
     const response = await fetch("/api/contact", {
       method: "POST",
       headers: {

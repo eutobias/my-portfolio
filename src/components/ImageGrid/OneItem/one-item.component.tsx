@@ -1,5 +1,5 @@
 import { ProjectImages } from "@/data/projects.data";
-import { SimpleImage, SimpleImageProps } from "../SimpleImage";
+import { SimpleImage } from "../SimpleImage";
 
 interface OneItemProps {
   image: ProjectImages;

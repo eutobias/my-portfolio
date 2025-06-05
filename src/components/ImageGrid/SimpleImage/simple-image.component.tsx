@@ -1,5 +1,5 @@
 import { classNames } from "@/lib/classNames";
-import { PhotoProvider, PhotoView } from "react-photo-view";
+import { PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 
 export interface SimpleImageProps {

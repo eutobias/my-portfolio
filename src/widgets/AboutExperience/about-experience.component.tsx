@@ -1,12 +1,9 @@
 import { Box } from "@/components/Box";
 import {
-  ExperienceTimelineItem,
-  ExperienceTimelineItemProps,
+  ExperienceTimelineItem
 } from "@/components/ExperienceTimelineItem";
 import { Heading } from "@/components/Heading";
-import { MyAvatar } from "@/components/MyAvatar";
 import { RoundedBox } from "@/components/RoundedBox";
-import { Text } from "@/components/Text";
 import { Timeline } from "@/components/Timeline";
 import { TimelineItemProps } from "@/components/Timeline/TimelineItem";
 import { experienceList } from "@/data/experience.data";
