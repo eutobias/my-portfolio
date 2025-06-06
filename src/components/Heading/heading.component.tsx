@@ -15,8 +15,8 @@ export const Heading = ({
   const baseStyles = "heading font-semibold text-headline";
 
   const sizeStyles = {
-    1: "text-4xl md:text-5xl text-subline",
-    2: "text-3xl md:text-4xl text-subline",
+    1: "text-4xl md:text-5xl",
+    2: "text-3xl md:text-4xl",
     3: "text-2xl md:text-3xl",
     4: "text-xl md:text-2xl",
     5: "text-lg md:text-xl",

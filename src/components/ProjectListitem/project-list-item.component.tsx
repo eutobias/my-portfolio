@@ -10,7 +10,7 @@ export interface ProjectListItemProps {
   content?: string;
   imageUrl?: string;
   imageAlt?: string;
-};
+}
 
 export const ProjectListItem = ({
   title,
@@ -18,7 +18,6 @@ export const ProjectListItem = ({
   imageUrl,
   imageAlt = "",
 }: ProjectListItemProps) => {
-  
   return (
     <Box
       className={classNames(styles["project-list-item"], "gap-4 items-center")}
@@ -31,7 +30,7 @@ export const ProjectListItem = ({
         />
       )}
       <Box className="flex-col">
-        {title && <Heading level={5} className="text-subline">{title}</Heading>}
+        {title && <Heading level={5}>{title}</Heading>}
         {content && <Text variant="body">{truncate(content)}</Text>}
       </Box>
     </Box>

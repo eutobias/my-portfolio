@@ -14,7 +14,7 @@ interface ProjectDetailProps {
 export const ProjectDetail = ({ project }: ProjectDetailProps) => {
   return (
     <RoundedBox className="project-detail-widget flex-col gap-8 mt-8">
-      <Heading level={2}>{project?.name}</Heading>
+      <Heading level={3}>{project?.name}</Heading>
       <ImageGrid images={project.images} />
       <Text variant="body">{project?.description}</Text>
 
@@ -25,7 +25,7 @@ export const ProjectDetail = ({ project }: ProjectDetailProps) => {
           <Box as="ul" className="flex-col gap-0">
             {project.frontend.map((item, index) => (
               <Text key={index} as="li" className="flex flex-row gap-2">
-                <Icon icon="dot" className="stroke-highlight"/>
+                <Icon icon="dot" className="stroke-highlight" />
                 <span>{item}</span>
               </Text>
             ))}
@@ -40,7 +40,7 @@ export const ProjectDetail = ({ project }: ProjectDetailProps) => {
           <Box as="ul" className="flex-col gap-0">
             {project.backend.map((item, index) => (
               <Text key={index} as="li" className="flex flex-row gap-2">
-                <Icon icon="dot" className="stroke-highlight"/>
+                <Icon icon="dot" className="stroke-highlight" />
                 <span>{item}</span>
               </Text>
             ))}
@@ -48,7 +48,9 @@ export const ProjectDetail = ({ project }: ProjectDetailProps) => {
         </Box>
       )}
 
-      <CustomLink href="/projects" size="large" className="place-self-end">Back to projects list</CustomLink>
+      <CustomLink href="/projects" size="large" className="place-self-end">
+        Back to projects list
+      </CustomLink>
     </RoundedBox>
   );
 };

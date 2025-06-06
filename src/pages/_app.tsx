@@ -1,5 +1,4 @@
 import { Container } from "@/components/Container";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import "@/styles/globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Navigation } from "@/widgets/Navigation";
@@ -8,9 +7,8 @@ import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="class" enableSystem={false}>
+    <ThemeProvider attribute="class" forcedTheme="dark">
       <Container>
-        <ThemeToggle />
         <Navigation />
         <Component {...pageProps} />
         <Footer />

@@ -8,14 +8,14 @@ import { ContactLinks } from "@/widgets/ContactLinks";
 export default function ContactPage() {
   return (
     <RoundedBox className="flex-col mt-8 gap-4">
-      <Heading level={2}>Get in touch</Heading>
+      <Heading level={3}>Get in touch</Heading>
       <Text>
         Have questions, need a quote, or want to discuss your project?
       </Text>
 
       <Box className="flex-col gap-2">
         <Text className="mt-4">You can reach me at:</Text>
-        <ContactLinks />  
+        <ContactLinks />
       </Box>
 
       <Text>

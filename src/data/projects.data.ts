@@ -2,6 +2,7 @@ export interface ProjectImages {
   src: string;
   alt: string;
   thumb: string;
+  kind?: "image" | "video";
 }
 
 export interface Project {
@@ -18,6 +19,46 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
+    name: "Funk: Um Grito de Ousadia e Liberdade",
+    slug: "funk-um-grito-de-ousadia-e-liberdade",
+    description:
+      "At the exhibition held by the Museu de Arte do Rio (Rio Art Museum), I developed an interactive feature where visitors could listen to a funk playlist directly tied to the show’s curation. The goal was to deepen the audience’s immersion through music, celebrating funk as a cultural, political, and artistic expression of the peripheries. The interactive element reinforced the exhibition’s narrative by connecting the themes explored in the artworks with the beats, lyrics, and voices that echo resistance, identity, and freedom.",
+    frontend: ["React Native", "TypeScript", "Tailwind CSS"],
+    images: [
+      {
+        src: "/images/funk-1.jpg",
+        alt: "",
+        thumb: "/images/funk-1.jpg",
+      },
+      {
+        src: "/images/funk-2.jpg",
+        alt: "",
+        thumb: "/images/funk-2.jpg",
+      },
+      {
+        src: "/images/funk-3.jpg",
+        alt: "",
+        thumb: "/images/funk-3.jpg",
+      },
+      {
+        src: "/images/funk-4.jpg",
+        alt: "",
+        thumb: "/images/funk-4.jpg",
+      },
+      {
+        src: "/images/funk-5.jpg",
+        alt: "",
+        thumb: "/images/funk-5.jpg",
+      },
+      {
+        src: "/images/funk-6.jpg",
+        alt: "",
+        thumb: "/images/funk-6.jpg",
+      },
+    ],
+  },
+  {
+    id: 2,
     name: "Analitica Pharmacy",
     slug: "analitica-pharmacy",
     description:
@@ -33,7 +74,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     name: "Bica On Tap",
     slug: "bica-on-tap",
     description:
@@ -74,7 +115,52 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
+    name: "Portal do ProfHistória",
+    slug: "portal-do-prof-historia",
+    description:
+      "Portal do ProfHistória is a digital archive of undergraduate theses in History from UFRJ (Federal University of Rio de Janeiro), featuring research on Brazil, culture, social movements, and historical theory. The project preserves and democratizes access to academic work, serving as a resource for students, researchers, and the public. Bridging past and present, it turns knowledge into collective heritage.",
+    frontend: ["HTML", "CSS", "JavaScript", "Pug Template Engine"],
+    images: [
+      {
+        src: "/images/profhistoria-1.jpg",
+        alt: "",
+        thumb: "/images/profhistoria-1_thumb.jpg",
+      },
+      {
+        src: "/images/profhistoria-2.jpg",
+        alt: "",
+        thumb: "/images/profhistoria-2_thumb.jpg",
+      },
+      {
+        src: "/images/profhistoria-3.jpg",
+        alt: "",
+        thumb: "/images/profhistoria-3_thumb.jpg",
+      },
+      {
+        src: "/images/profhistoria-4.jpg",
+        alt: "",
+        thumb: "/images/profhistoria-4_thumb.jpg",
+      },
+      {
+        src: "/images/profhistoria-5.jpg",
+        alt: "",
+        thumb: "/images/profhistoria-5_thumb.jpg",
+      },
+      {
+        src: "/images/profhistoria-6.jpg",
+        alt: "",
+        thumb: "/images/profhistoria-6_thumb.jpg",
+      },
+      {
+        src: "/images/profhistoria-7.jpg",
+        alt: "",
+        thumb: "/images/profhistoria-7_thumb.jpg",
+      },
+    ],
+  },
+  {
+    id: 5,
     name: "Mariana Alves Portfolio",
     slug: "mariana-alves-portfolio",
     description:
@@ -89,7 +175,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 4,
+    id: 6,
     name: "Stone Institutional Website",
     slug: "stone-institutional-website",
     description:
@@ -119,7 +205,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 5,
+    id: 7,
     name: "Item Management System - Arcotech",
     slug: "item-management-system-arcotech",
     description:
@@ -162,7 +248,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 6,
+    id: 8,
     name: "Widgets and A/B Testing - Oi",
     slug: "widgets-ab-testing-oi",
     description:
