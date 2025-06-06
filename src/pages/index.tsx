@@ -1,16 +1,13 @@
-import { Container } from "@/components/Container";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { projects } from "@/data/projects.data";
 import { About } from "@/widgets/About";
-import { Navigation } from "@/widgets/Navigation";
 import { Projects } from "@/widgets/Projects/projects.component";
 
-export default function Home() {
+
+export default function HomePage() {
   return (
-    <Container>
-      <ThemeToggle />
-      <Navigation />
-      <About />
-      <Projects />
-    </Container>
+    <>
+      <About isAtHomePage={true} />
+      <Projects projects={projects} isAtHomePage={true} />
+    </>
   );
 }

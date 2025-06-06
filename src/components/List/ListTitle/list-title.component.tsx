@@ -1,6 +1,6 @@
 import { Heading } from "@/components/Heading";
 
-type ListTitleProps = {
+interface ListTitleProps {
   children: React.ReactNode;
 };
 

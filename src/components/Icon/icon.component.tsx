@@ -1,11 +1,11 @@
 import { DynamicIcon, IconName } from "lucide-react/dynamic";
 
-export type IconProps = {
+export interface IconProps {
   icon: IconName;
   className?: string;
   size?: number;
   color?: string;
-};
+}
 
 export const Icon = ({
   icon,

@@ -24,10 +24,11 @@ export function Box({
   fullWidth = true,
   as = "div",
 }: BoxProps) {
-  const Component = as;
+  const Tag = as;
 
   return (
-    <Component
+    <Tag
+      suppressHydrationWarning
       className={classNames(
         "flex",
         {
@@ -49,7 +50,7 @@ export function Box({
         className
       )}
     >
-      {children && children}
-    </Component>
+      {children}
+    </Tag>
   );
 }
