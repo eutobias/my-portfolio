@@ -1,20 +1,39 @@
 import { List } from "@/components/List";
 import { ProjectListItem } from "@/components/ProjectListitem";
+import { Project } from "@/data/projects.data";
+import Link from "next/link";
 
-export const Projects = () => {
+interface ProjectsProps {
+  isAtHomePage?: boolean;
+  projects: Project[];
+}
+
+export const Projects = ({ isAtHomePage = false, projects = []}: ProjectsProps) => {
+  const projectsAvailableList = isAtHomePage ? projects.slice(0, 3) : projects;
+
+  
   return (
     <List className="mt-8">
       <List.Title>Projects</List.Title>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <List.Item key={i}>
-          <ProjectListItem
-            title={`Project Title ${i}`}
-            content={`Project Description ${1}`}
-            imageUrl={i%2===0 ? "https://placehold.co/600x100": "https://placehold.co/600x400" }
-            imageAlt={`Thumb preview of project ${i}`}
-          />
-        </List.Item>
+      {projectsAvailableList.map((project, index) => (
+        <Link key={project.slug+index} href={`/projects/${project.slug}`}>
+          <List.Item key={`project-list-item-${index}`}>
+            <ProjectListItem
+              title={project.name}
+              content={project.description}
+              imageUrl={project.images[0].thumb}
+              imageAlt={project.images[0].alt}
+            />
+          </List.Item>
+        </Link>
       ))}
+
+      {isAtHomePage && (
+        <List.ViewMore href="/projects">View all projects</List.ViewMore>
+      )}
+      {!isAtHomePage && (
+        <List.ViewMore href="/">Back to home</List.ViewMore>
+      )}
     </List>
   );
 };

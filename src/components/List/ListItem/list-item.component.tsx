@@ -3,7 +3,7 @@ import { Icon } from "@/components/Icon";
 import styles from "./list-item.module.scss"
 import { classNames } from "@/lib/classNames";
 
-type ListItemProps = {
+interface ListItemProps {
   children: React.ReactNode;
   as?: keyof React.JSX.IntrinsicElements;
 };

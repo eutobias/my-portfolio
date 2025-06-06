@@ -1,10 +1,10 @@
-@import "tailwindcss";
+@use "tailwindcss";
 
 :root {
   &.dark {
     --background: #242629;
-    --headline: #fffffe;
-    --subline: #94a1b2;
+    --headline: #94a1b2;
+    --subline: #fffffe;
     --foreground: #16161a;
     --highlight: #2cb67d;
     --tertiary: #7f5af0;
@@ -12,20 +12,19 @@
     --card: #242629;
     --card-hover: #2b2b33;
 
-
     --font-sans-rubik: "Rubik", sans-serif;
   }
 
   &.light {
-    --background: #fffffe;
-    --headline: #0d0d0d;
-    --subline: #2a2a2a;
-    --foreground: #eff0f3;
-    --highlight: #d9376e;
-    --tertiary: #ff8e3c;
+    --background: #d8eefe;
+    --headline: #094067;
+    --subline: #5f6c7b;
+    --foreground: #fffffe;
+    --highlight: #3da9fc;
+    --tertiary: #f9bc60;
 
-    --card: #fafafa;
-    --card-hover: #fefefe;
+    --card: #fffffe;
+    --card-hover: #d8eefe;
 
     --font-sans-rubik: "Rubik", sans-serif;
   }
@@ -35,8 +34,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-custom-card:  var(--card);
-  --color-custom-card-hover:  var(--card-hover);
+  --color-custom-card: var(--card);
+  --color-custom-card-hover: var(--card-hover);
 
   --color-headline: var(--headline);
   --color-subline: var(--subline);
@@ -52,7 +51,11 @@ body {
   font-family: var(--font-sans);
 }
 
+body,
+#__next {
+  min-height: 100vh;
+}
+
 .highlight {
   color: var(--highlight);
 }
-

@@ -1,7 +1,7 @@
 import { MenuItem } from "@/components/Menu/MenuItem";
 import { RoundedBox } from "@/components/RoundedBox";
 
-type MenuProps = {
+interface MenuProps {
   children: React.ReactNode;
 };
 

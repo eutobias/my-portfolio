@@ -2,7 +2,7 @@ import { classNames } from "@/lib/classNames";
 import { ReactNode } from "react";
 import styles from "./text.module.scss";
 
-type TextTag = "p" | "span" | "strong" | "em";
+type TextTag = "p" | "span" | "strong" | "em" | "dt" | "dd" | "li";
 
 interface TextProps {
   as?: TextTag;

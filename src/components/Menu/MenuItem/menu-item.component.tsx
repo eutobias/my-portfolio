@@ -3,7 +3,7 @@ import { Text } from "@/components/Text";
 import Link from "next/link";
 import styles from "./menu-item.module.scss";
 
-type MenuItemProps = {
+interface MenuItemProps {
   label: string;
   icon: IconProps["icon"];
   href: string;
