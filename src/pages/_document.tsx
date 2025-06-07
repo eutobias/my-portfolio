@@ -32,7 +32,7 @@ export default function Document() {
         />
         <meta
           property="og:image"
-          content="https://eutobias.dev/images/og_image.jpg"
+          content="https://eutobias.dev/images/og_image.png"
         />
         <meta
           property="og:logo"
@@ -52,7 +52,7 @@ export default function Document() {
         />
         <meta
           property="twitter:image"
-          content="https://eutobias.dev/images/og_image.jpg"
+          content="https://eutobias.dev/images/og_image.png"
         />
 
         {/* Favicon */}
