@@ -7,7 +7,6 @@ export default function Document() {
       <title>eutobias.dev - Tobias Taurian - Portfolio</title>
       <Head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="description"
           content="Tobias is a Senior Full Stack Developer with expertise in React, Node.js, and TypeScript. Building scalable web applications with modern JavaScript frameworks and cloud technologies."
