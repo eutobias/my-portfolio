@@ -1,0 +1,22 @@
+import { Icon, IconProps } from "../../Icon";
+import { Text } from "../../Text";
+import Link from "next/link";
+import styles from "./menu-item.module.scss";
+
+interface MenuItemProps {
+  label: string;
+  icon: IconProps["icon"];
+  href: string;
+}
+
+export const MenuItem = ({ href, icon, label }: MenuItemProps) => {
+  return (
+    <Link
+      href={href}
+      className={`flex flex-col items-center gap-1 ${styles["menu-item"]}`}
+    >
+      <Icon icon={icon} />
+      <Text variant="body">{label}</Text>
+    </Link>
+  );
+};

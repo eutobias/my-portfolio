@@ -1,0 +1,415 @@
+/**
+ * Tobias Neo Brutalism Portfolio - Tailwind v4 Theme Variables
+ * 
+ * Este arquivo contém todas as variáveis CSS para os 4 temas.
+ * Importe este arquivo no seu index.css ou main.css
+ * 
+ * Uso:
+ * 1. Copie este arquivo para client/src/
+ * 2. Importe em client/src/index.css: @import './tailwind-theme-variables.css';
+ * 3. Use as variáveis no seu código React/CSS
+ */
+
+/* ==========================================
+   LIGHT MINT THEME (Padrão)
+   ========================================== */
+:root,
+[data-theme='light-mint'] {
+  /* Background Colors */
+  --theme-bg: #ffffff;
+  --theme-bg-secondary: #f5f5f5;
+
+  /* Text Colors */
+  --theme-text: #000000;
+  --theme-text-muted: #4b5563;
+
+  /* Border Color */
+  --theme-border: #000000;
+
+  /* Primary Color */
+  --theme-primary: #00d084;
+  --theme-primary-text: #000000;
+
+  /* Secondary Color */
+  --theme-secondary: #d8b4fe;
+  --theme-secondary-text: #000000;
+
+  /* Accent Color */
+  --theme-accent: #ff7e40;
+  --theme-accent-text: #000000;
+
+  /* Highlight Color */
+  --theme-highlight: #fde047;
+  --theme-highlight-text: #000000;
+}
+
+/* ==========================================
+   PASTEL DREAM THEME
+   ========================================== */
+[data-theme='pastel-dream'] {
+  /* Background Colors */
+  --theme-bg: #fff9f5;
+  --theme-bg-secondary: #f5e6f0;
+
+  /* Text Colors */
+  --theme-text: #2d1b4e;
+  --theme-text-muted: #6b5b7f;
+
+  /* Border Color */
+  --theme-border: #2d1b4e;
+
+  /* Primary Color */
+  --theme-primary: #ffb3d9;
+  --theme-primary-text: #2d1b4e;
+
+  /* Secondary Color */
+  --theme-secondary: #b3e5fc;
+  --theme-secondary-text: #2d1b4e;
+
+  /* Accent Color */
+  --theme-accent: #ffd699;
+  --theme-accent-text: #2d1b4e;
+
+  /* Highlight Color */
+  --theme-highlight: #c8e6c9;
+  --theme-highlight-text: #2d1b4e;
+}
+
+/* ==========================================
+   BOLD CONTRAST THEME
+   ========================================== */
+[data-theme='bold-contrast'] {
+  /* Background Colors */
+  --theme-bg: #fffbf0;
+  --theme-bg-secondary: #f0f0f0;
+
+  /* Text Colors */
+  --theme-text: #000000;
+  --theme-text-muted: #333333;
+
+  /* Border Color */
+  --theme-border: #000000;
+
+  /* Primary Color */
+  --theme-primary: #ff006e;
+  --theme-primary-text: #ffffff;
+
+  /* Secondary Color */
+  --theme-secondary: #00d9ff;
+  --theme-secondary-text: #000000;
+
+  /* Accent Color */
+  --theme-accent: #ffd60a;
+  --theme-accent-text: #000000;
+
+  /* Highlight Color */
+  --theme-highlight: #3a86ff;
+  --theme-highlight-text: #ffffff;
+}
+
+/* ==========================================
+   SUNSET VIBES THEME
+   ========================================== */
+[data-theme='sunset-vibes'] {
+  /* Background Colors */
+  --theme-bg: #fff5e6;
+  --theme-bg-secondary: #ffe8d6;
+
+  /* Text Colors */
+  --theme-text: #3d2817;
+  --theme-text-muted: #6b5344;
+
+  /* Border Color */
+  --theme-border: #3d2817;
+
+  /* Primary Color */
+  --theme-primary: #ff6b35;
+  --theme-primary-text: #ffffff;
+
+  /* Secondary Color */
+  --theme-secondary: #f7931e;
+  --theme-secondary-text: #ffffff;
+
+  /* Accent Color */
+  --theme-accent: #fb5607;
+  --theme-accent-text: #ffffff;
+
+  /* Highlight Color */
+  --theme-highlight: #ffbe0b;
+  --theme-highlight-text: #3d2817;
+}
+
+/* ==========================================
+   TYPOGRAPHY VARIABLES
+   ========================================== */
+:root {
+  /* Font Families */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Heading Sizes */
+  --text-heading-xl: 48px;
+  --text-heading-lg: 36px;
+  --text-heading-md: 28px;
+  --text-heading-sm: 20px;
+
+  /* Body Sizes */
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-body-sm: 14px;
+
+  /* Monospace Sizes */
+  --text-mono-lg: 14px;
+  --text-mono-md: 12px;
+  --text-mono-sm: 10px;
+
+  /* Font Weights */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.3;
+  --line-height-relaxed: 1.4;
+  --line-height-loose: 1.5;
+  --line-height-very-loose: 1.6;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.02em;
+}
+
+/* ==========================================
+   SPACING VARIABLES
+   ========================================== */
+:root {
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+}
+
+/* ==========================================
+   SHADOW VARIABLES (Neo Brutalism)
+   ========================================== */
+:root {
+  --shadow-sm: 2px 2px 0px 0px rgba(0, 0, 0, 0.2);
+  --shadow-md: 4px 4px 0px 0px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 6px 6px 0px 0px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 8px 8px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   BORDER VARIABLES
+   ========================================== */
+:root {
+  --border-thin: 2px;
+  --border-medium: 3px;
+  --border-thick: 4px;
+  --border-radius-none: 0px;
+}
+
+/* ==========================================
+   TRANSITION VARIABLES
+   ========================================== */
+:root {
+  --transition-fast: 100ms;
+  --transition-normal: 200ms;
+  --transition-slow: 300ms;
+
+  --easing-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+  --easing-smooth: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+/* Heading Styles */
+.heading-xl {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-xl);
+  font-weight: var(--font-extrabold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.heading-lg {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-lg);
+  font-weight: var(--font-extrabold);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.heading-md {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-md);
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.heading-sm {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-sm);
+  font-weight: var(--font-bold);
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Body Styles */
+.body-lg {
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-medium);
+  line-height: var(--line-height-very-loose);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.body-md {
+  font-family: var(--font-body);
+  font-size: var(--text-body-md);
+  font-weight: var(--font-medium);
+  line-height: var(--line-height-very-loose);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.body-sm {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-medium);
+  line-height: var(--line-height-loose);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Monospace Styles */
+.mono-lg {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-lg);
+  font-weight: var(--font-medium);
+  line-height: var(--line-height-very-loose);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.mono-md {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-md);
+  font-weight: var(--font-medium);
+  line-height: var(--line-height-loose);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.mono-sm {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono-sm);
+  font-weight: var(--font-medium);
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Neo Brutalism Components */
+.btn-neo-primary {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-weight: var(--font-bold);
+  border: var(--border-thick) solid var(--theme-border);
+  background-color: var(--theme-primary);
+  color: var(--theme-primary-text);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal) var(--easing-snappy);
+  cursor: pointer;
+}
+
+.btn-neo-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-neo-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-neo-secondary {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-weight: var(--font-bold);
+  border: var(--border-thick) solid var(--theme-border);
+  background-color: var(--theme-secondary);
+  color: var(--theme-secondary-text);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal) var(--easing-snappy);
+  cursor: pointer;
+}
+
+.btn-neo-secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-neo-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-neo {
+  border: var(--border-thick) solid var(--theme-border);
+  background-color: var(--theme-bg-secondary);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal) var(--easing-snappy);
+}
+
+.card-neo:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.input-neo {
+  border: var(--border-thick) solid var(--theme-border);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+  padding: var(--spacing-md);
+  font-weight: var(--font-medium);
+  transition: all var(--transition-normal) var(--easing-snappy);
+}
+
+.input-neo:focus {
+  outline: none;
+  ring: 4px solid var(--theme-primary);
+}
+
+.badge-neo {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: var(--font-mono);
+  font-weight: var(--font-bold);
+  font-size: var(--text-mono-sm);
+  border: var(--border-thin) solid var(--theme-border);
+  background-color: var(--theme-bg);
+  color: var(--theme-text-muted);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ==========================================
+   THEME TRANSITION
+   ========================================== */
+* {
+  transition:
+    background-color var(--transition-slow) var(--easing-smooth),
+    color var(--transition-slow) var(--easing-smooth),
+    border-color var(--transition-slow) var(--easing-smooth);
+}
+
+/* Desabilitar transição em elementos específicos se necessário */
+.no-theme-transition {
+  transition: none !important;
+}
