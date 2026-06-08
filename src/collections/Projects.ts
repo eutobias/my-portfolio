@@ -24,13 +24,34 @@ export const Projects: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      localized: true,
       required: true,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      admin: {
+        position: 'sidebar',
+      },
+      hooks: {
+        beforeValidate: [
+          ({ value, data }) => {
+            if (value) return value
+            const source = data?.title ?? ''
+            return source
+              .toLowerCase()
+              .trim()
+              .replace(/[^\w\s-]/g, '')
+              .replace(/[\s_]+/g, '-')
+              .replace(/^-+|-+$/g, '')
+          },
+        ],
+      },
     },
     {
       name: 'content',
       type: 'richText',
-      localized: true,
       required: true,
       editor: lexicalEditor(),
     },

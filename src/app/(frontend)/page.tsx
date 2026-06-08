@@ -11,15 +11,11 @@ export default async function HomePage() {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
 
-  const home = await payload.findGlobal({ slug: 'home', depth: 1 }).catch(() => null)
+  const home = await payload.findGlobal({ slug: 'home', depth: 2 }).catch(() => null)
   if (!home) return notFound()
 
   const { logo, hero, whatIDo, featuredProjects } = home
   const logoImage = logo.image as Media
-
-  {
-    console.log('featuredProjects?.projects: ', featuredProjects?.projects)
-  }
 
   return (
     <main>
@@ -43,12 +39,8 @@ export default async function HomePage() {
         <p>{hero.greeting}</p>
         <h1>{hero.name}</h1>
         <p>{hero.description}</p>
-        <a href="" data-color={hero.ctaProject.color}>
-          {hero.ctaProject.label}
-        </a>
-        <a href="" data-color={hero.ctaContact.color}>
-          {hero.ctaContact.label}
-        </a>
+        <a data-color={hero.ctaProject.color}>{hero.ctaProject.label}</a>
+        <a data-color={hero.ctaContact.color}>{hero.ctaContact.label}</a>
       </section>
 
       {/* What I Do */}
@@ -66,28 +58,32 @@ export default async function HomePage() {
       {/* Featured Projects */}
       <section>
         <h2>{featuredProjects.title}</h2>
-        <a href="" data-color={featuredProjects.ctaSeeAll.color}>
+        <a href="/projects" data-color={featuredProjects.ctaSeeAll.color}>
           {featuredProjects.ctaSeeAll.label}
         </a>
+
+        <ul>
+          {featuredProjects?.projects?.map(({ project, id }) => {
+            const p = project as Project
+            const firstMedia = p.medias?.[0]?.media as Media | undefined
+
+            return (
+              <li key={id ?? p.id}>
+                {firstMedia?.url && (
+                  <Image
+                    alt={p.title}
+                    src={firstMedia.url}
+                    width={firstMedia.width ?? 400}
+                    height={firstMedia.height ?? 300}
+                  />
+                )}
+                <h3>{p.title}</h3>
+                <RichText data={p.content} />
+              </li>
+            )
+          })}
+        </ul>
       </section>
-      <ul>
-        {featuredProjects?.projects?.map(({ project }) => (
-          <li key={project.id}>
-            <div>
-              {project.medias?.[0] && (
-                <Image
-                  alt={project.title}
-                  src={project.medias[0].url}
-                  width={project.medias[0].width ?? 65}
-                  height={project.medias[0].height ?? 65}
-                />
-              )}
-            </div>
-            {project.title}
-            {project.content && <RichText data={project.content} />}
-          </li>
-        ))}
-      </ul>
     </main>
   )
 }

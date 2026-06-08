@@ -93,11 +93,17 @@ export interface Config {
     home: Home;
     'projects-page': ProjectsPage;
     about: About;
+    contact: Contact;
+    header: Header;
+    footer: Footer;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
     'projects-page': ProjectsPageSelect<false> | ProjectsPageSelect<true>;
     about: AboutSelect<false> | AboutSelect<true>;
+    contact: ContactSelect<false> | ContactSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
   widgets: {
@@ -182,6 +188,7 @@ export interface Project {
     id?: string | null;
   }[];
   title: string;
+  slug: string;
   content: {
     root: {
       type: string;
@@ -338,6 +345,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         id?: T;
       };
   title?: T;
+  slug?: T;
   content?: T;
   stacks?:
     | T
@@ -603,6 +611,126 @@ export interface About {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact".
+ */
+export interface Contact {
+  id: string;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  contactInfo: {
+    title: string;
+    email: {
+      icon: string;
+      value: string;
+      href?: string | null;
+    };
+    phone: {
+      icon: string;
+      value: string;
+      href?: string | null;
+    };
+    whatsapp: {
+      icon: string;
+      value: string;
+      href?: string | null;
+    };
+    answerTime: {
+      title: string;
+      text: string;
+    };
+  };
+  contactForm: {
+    name: {
+      label: string;
+      placeholder: string;
+    };
+    email: {
+      label: string;
+      placeholder: string;
+    };
+    phone: {
+      label: string;
+      placeholder: string;
+    };
+    message: {
+      label: string;
+      placeholder: string;
+    };
+  };
+  modalConfirmation: {
+    title: string;
+    text: string;
+    label: string;
+  };
+  modalError: {
+    title: string;
+    text: string;
+    label: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  siteName: string;
+  navigation: {
+    home: {
+      label: string;
+    };
+    projects: {
+      label: string;
+    };
+    about: {
+      label: string;
+    };
+    contact: {
+      label: string;
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  info: {
+    name: string;
+    description: string;
+    copyright: string;
+  };
+  socialNetworks?:
+    | {
+        site: string;
+        link: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
@@ -739,6 +867,148 @@ export interface AboutSelect<T extends boolean = true> {
               description?: T;
               id?: T;
             };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact_select".
+ */
+export interface ContactSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  contactInfo?:
+    | T
+    | {
+        title?: T;
+        email?:
+          | T
+          | {
+              icon?: T;
+              value?: T;
+              href?: T;
+            };
+        phone?:
+          | T
+          | {
+              icon?: T;
+              value?: T;
+              href?: T;
+            };
+        whatsapp?:
+          | T
+          | {
+              icon?: T;
+              value?: T;
+              href?: T;
+            };
+        answerTime?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+            };
+      };
+  contactForm?:
+    | T
+    | {
+        name?:
+          | T
+          | {
+              label?: T;
+              placeholder?: T;
+            };
+        email?:
+          | T
+          | {
+              label?: T;
+              placeholder?: T;
+            };
+        phone?:
+          | T
+          | {
+              label?: T;
+              placeholder?: T;
+            };
+        message?:
+          | T
+          | {
+              label?: T;
+              placeholder?: T;
+            };
+      };
+  modalConfirmation?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        label?: T;
+      };
+  modalError?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+        label?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  siteName?: T;
+  navigation?:
+    | T
+    | {
+        home?:
+          | T
+          | {
+              label?: T;
+            };
+        projects?:
+          | T
+          | {
+              label?: T;
+            };
+        about?:
+          | T
+          | {
+              label?: T;
+            };
+        contact?:
+          | T
+          | {
+              label?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  info?:
+    | T
+    | {
+        name?: T;
+        description?: T;
+        copyright?: T;
+      };
+  socialNetworks?:
+    | T
+    | {
+        site?: T;
+        link?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

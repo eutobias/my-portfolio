@@ -3,7 +3,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
 export const ProjectsPage: GlobalConfig = {
   slug: 'projects-page',
-  label: 'Projects Page',
+  label: 'Projects',
   fields: [
     {
       name: 'intro',
