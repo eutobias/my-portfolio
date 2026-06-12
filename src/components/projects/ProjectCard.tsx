@@ -13,8 +13,8 @@ type RichTextData = Parameters<typeof RichText>[0]['data']
 interface ProjectCardProps {
   slug: string
   title: string
-  content: RichTextData
-  stacks: { title: string; items: { item: string }[] }[]
+  content: string
+  stacks?: { title: string; items: { item: string }[] }[]
   media: Media | undefined
 }
 
@@ -56,6 +56,12 @@ export function ProjectCard({ slug, title, content, stacks, media }: ProjectCard
       >
         {content}
       </div>
+
+      {!!(stacks && stacks?.length > 0) && (
+        <Box className="flex-row flex-wrap gap-2">
+          {stacks.map((stack) => stack.items.map(({ item }) => <Tag key={item} item={item} />))}
+        </Box>
+      )}
 
       <ButtonLink href={`/projects/${slug}`} variant="secondary" className="mt-auto">
         See the project

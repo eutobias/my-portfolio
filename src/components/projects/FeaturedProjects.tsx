@@ -55,7 +55,7 @@ export function FeaturedProjects({ data }: FeaturedProjectsProps) {
                   slug={p.slug}
                   title={truncate(p.title, 50)}
                   content={truncate(extractTextFromLexical(p.content))}
-                  stacks={p.stacks}
+                  // stacks={p.stacks}
                   media={firstMedia}
                 />
               )

@@ -1,10 +1,16 @@
-import { RichText } from '@payloadcms/richtext-lexical/react'
-import Image from 'next/image'
 import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 
 import config from '@/payload.config'
 import type { Media } from '@/payload-types'
+import { Container } from '@/components/base/Container'
+import { Box } from '@/components/base/Box'
+import { Grid } from '@/components/base/Grid'
+import { SectionHeader } from '@/components/base/SectionHeader'
+import { ProjectCard } from '@/components/projects/ProjectCard'
+import { Layers } from 'lucide-react'
+import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
 
 export default async function ProjectsPage() {
   const payloadConfig = await config
@@ -21,52 +27,35 @@ export default async function ProjectsPage() {
 
   return (
     <main>
-      {/* Intro */}
-      <section>
-        <h1>{intro.title}</h1>
-        <RichText data={intro.description} />
-      </section>
+      <Box as="section" className="w-full flex-col py-16">
+        <Container>
+          <Box className="flex-col gap-8">
+            <SectionHeader
+              icon={<Layers className="w-8 h-8" style={{ color: 'var(--theme-primary)' }} />}
+              title={intro.title}
+              intro={extractTextFromLexical(intro.description)}
+              className="gap-4 pb-8"
+            />
 
-      {/* Projects list */}
-      <section>
-        <ul>
-          {projects.map((project) => {
-            const firstMedia = project.medias?.[0]?.media as Media | undefined
+            <Grid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map((project) => {
+                const firstMedia = project.medias?.[0]?.media as Media | undefined
 
-            return (
-              <li key={project.id}>
-                {firstMedia?.url && (
-                  <Image
-                    src={firstMedia.url}
-                    alt={project.title}
-                    width={firstMedia.width ?? 400}
-                    height={firstMedia.height ?? 300}
+                return (
+                  <ProjectCard
+                    key={project.id}
+                    slug={project.slug}
+                    title={project.title}
+                    content={extractTextFromLexical(project.content)}
+                    stacks={project.stacks}
+                    media={firstMedia}
                   />
-                )}
-
-                <h2>{project.title}</h2>
-
-                <RichText data={project.content} />
-
-                {project.stacks?.length > 0 && (
-                  <div>
-                    {project.stacks.map((stack) => (
-                      <div key={stack.id}>
-                        <h3>{stack.title}</h3>
-                        <ul>
-                          {stack.items.map((i) => (
-                            <li key={i.id}>{i.item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-      </section>
+                )
+              })}
+            </Grid>
+          </Box>
+        </Container>
+      </Box>
     </main>
   )
 }

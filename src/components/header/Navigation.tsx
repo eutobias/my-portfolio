@@ -11,11 +11,12 @@ interface NavigationProps {
 
 export function Navigation({ navigation }: NavigationProps) {
   const pathname = usePathname()
+  const currentPath = pathname.lastIndexOf('/') > 0 ? pathname.substring(0, pathname.lastIndexOf('/')) : pathname
 
   return (
     <Box className="gap-3 items-center hidden md:flex">
       {Object.entries(navigation).map(([key, value]) => {
-        const isActive = pathname === value.href
+        const isActive = currentPath === value.href
         const label = value.label || key.charAt(0).toUpperCase() + key.slice(1)
         return (
           <ButtonLink
