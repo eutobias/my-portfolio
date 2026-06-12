@@ -16,7 +16,10 @@ export const Header: GlobalConfig = {
       fields: (['home', 'projects', 'about', 'contact'] as const).map((name) => ({
         name,
         type: 'group' as const,
-        fields: [{ name: 'label', type: 'text' as const, required: true }],
+        fields: [
+          { name: 'label', type: 'text' as const, required: true },
+          { name: 'href', type: 'text' as const, required: true },
+        ],
       })),
     },
   ],

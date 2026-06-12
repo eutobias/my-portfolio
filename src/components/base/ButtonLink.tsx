@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { ComponentPropsWithoutRef } from 'react'
-import { type ButtonBaseProps, getButtonStyle } from '@/components/Button'
+import { type ButtonBaseProps, getButtonStyle } from '@/components/base/Button'
 
 interface ButtonLinkProps extends ComponentPropsWithoutRef<typeof Link>, ButtonBaseProps {
   children: React.ReactNode
@@ -15,7 +15,11 @@ export function ButtonLink({
   ...rest
 }: ButtonLinkProps) {
   return (
-    <Link className={className} style={getButtonStyle(variant, size, style)} {...rest}>
+    <Link
+      className={`hover:translate-x-px hover:translate-y-px transition-all ${className}`}
+      style={getButtonStyle(variant, size, style)}
+      {...rest}
+    >
       {children}
     </Link>
   )

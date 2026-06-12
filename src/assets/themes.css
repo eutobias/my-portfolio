@@ -149,10 +149,17 @@
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Heading Sizes */
-  --text-heading-xl: 48px;
-  --text-heading-lg: 36px;
-  --text-heading-md: 28px;
+  --text-heading-xl: 40px;
+  --text-heading-lg: 32px;
+  --text-heading-md: 24px;
   --text-heading-sm: 20px;
+
+  @media (min-width: 48rem) {
+    --text-heading-xl: 48px;
+    --text-heading-lg: 36px;
+    --text-heading-md: 28px;
+    --text-heading-sm: 20px;
+  }
 
   /* Body Sizes */
   --text-body-lg: 18px;
@@ -403,10 +410,10 @@
    THEME TRANSITION
    ========================================== */
 * {
-  transition:
+  /* transition:
     background-color var(--transition-slow) var(--easing-smooth),
     color var(--transition-slow) var(--easing-smooth),
-    border-color var(--transition-slow) var(--easing-smooth);
+    border-color var(--transition-slow) var(--easing-smooth); */
 }
 
 /* Desabilitar transição em elementos específicos se necessário */

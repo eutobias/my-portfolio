@@ -694,15 +694,19 @@ export interface Header {
   navigation: {
     home: {
       label: string;
+      href: string;
     };
     projects: {
       label: string;
+      href: string;
     };
     about: {
       label: string;
+      href: string;
     };
     contact: {
       label: string;
+      href: string;
     };
   };
   updatedAt?: string | null;
@@ -970,21 +974,25 @@ export interface HeaderSelect<T extends boolean = true> {
           | T
           | {
               label?: T;
+              href?: T;
             };
         projects?:
           | T
           | {
               label?: T;
+              href?: T;
             };
         about?:
           | T
           | {
               label?: T;
+              href?: T;
             };
         contact?:
           | T
           | {
               label?: T;
+              href?: T;
             };
       };
   updatedAt?: T;

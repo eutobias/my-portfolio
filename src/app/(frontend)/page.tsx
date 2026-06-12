@@ -1,11 +1,12 @@
-import { RichText } from '@payloadcms/richtext-lexical/react'
-import Image from 'next/image'
 import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
 
 import '@/assets/styles.css'
 import config from '@/payload.config'
-import type { Media, Project } from '@/payload-types'
+import type { Media } from '@/payload-types'
+import { Hero } from '@/components/hero/Hero'
+import { WhatIDo } from '@/components/whatido/WhatIDo'
+import { FeaturedProjects } from '@/components/projects/FeaturedProjects'
 
 export default async function HomePage() {
   const payloadConfig = await config
@@ -19,71 +20,19 @@ export default async function HomePage() {
 
   return (
     <main>
-      {/* Logo */}
-      <header>
-        {logoImage?.url && (
-          <Image
-            alt={logo.name}
-            src={logoImage.url}
-            width={logoImage.width ?? 65}
-            height={logoImage.height ?? 65}
-          />
-        )}
-        <span>{logo.name}</span>
-        <span>{logo.networkId}</span>
-      </header>
+      <Hero
+        logo={logoImage?.url ?? ''}
+        badge={hero.badge}
+        greeting={hero.greeting}
+        name={hero.name}
+        description={hero.description}
+        ctaProject={hero.ctaProject}
+        ctaContact={hero.ctaContact}
+      />
 
-      {/* Hero */}
-      <section>
-        <span>{hero.badge}</span>
-        <p>{hero.greeting}</p>
-        <h1>{hero.name}</h1>
-        <p>{hero.description}</p>
-        <a data-color={hero.ctaProject.color}>{hero.ctaProject.label}</a>
-        <a data-color={hero.ctaContact.color}>{hero.ctaContact.label}</a>
-      </section>
+      <WhatIDo data={whatIDo} />
 
-      {/* What I Do */}
-      <section>
-        <h2>{whatIDo.title}</h2>
-        {(['frontend', 'backend', 'devops'] as const).map((area) => (
-          <div key={area}>
-            <span>{whatIDo[area].icon}</span>
-            <h3>{whatIDo[area].title}</h3>
-            <RichText data={whatIDo[area].intro} />
-          </div>
-        ))}
-      </section>
-
-      {/* Featured Projects */}
-      <section>
-        <h2>{featuredProjects.title}</h2>
-        <a href="/projects" data-color={featuredProjects.ctaSeeAll.color}>
-          {featuredProjects.ctaSeeAll.label}
-        </a>
-
-        <ul>
-          {featuredProjects?.projects?.map(({ project, id }) => {
-            const p = project as Project
-            const firstMedia = p.medias?.[0]?.media as Media | undefined
-
-            return (
-              <li key={id ?? p.id}>
-                {firstMedia?.url && (
-                  <Image
-                    alt={p.title}
-                    src={firstMedia.url}
-                    width={firstMedia.width ?? 400}
-                    height={firstMedia.height ?? 300}
-                  />
-                )}
-                <h3>{p.title}</h3>
-                <RichText data={p.content} />
-              </li>
-            )
-          })}
-        </ul>
-      </section>
+      <FeaturedProjects data={featuredProjects} />
     </main>
   )
 }

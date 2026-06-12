@@ -1,21 +1,17 @@
+import { Color, HeadingSize, Size, HeadingTag, Weight } from '@/components/base/types'
 import type { CSSProperties } from 'react'
-
-type Size = 'xl' | 'lg' | 'md' | 'sm'
-type Weight = 'regular' | 'medium' | 'semibold' | 'bold' | 'extrabold'
-type Color = 'default' | 'muted' | 'primary' | 'secondary' | 'tertiary'
-type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 interface HeadingProps {
   children: React.ReactNode
-  size?: Size
+  size?: HeadingSize
   weight?: Weight
   color?: Color
-  as?: Tag
+  as?: HeadingTag
   className?: string
   style?: CSSProperties
 }
 
-const sizeVar: Record<Size, string> = {
+const sizeVar: Record<HeadingSize, string> = {
   xl: 'var(--text-heading-xl)',
   lg: 'var(--text-heading-lg)',
   md: 'var(--text-heading-md)',
@@ -35,10 +31,11 @@ const colorVar: Record<Color, string> = {
   muted: 'var(--theme-text-muted)',
   primary: 'var(--theme-primary-text)',
   secondary: 'var(--theme-secondary-text)',
-  tertiary: 'var(--theme-accent-text)',
+  accent: 'var(--theme-accent-text)',
+  highlight: 'var(--theme-highlight-text)',
 }
 
-const tagDefaultSize: Record<Tag, Size> = {
+const tagDefaultSize: Record<HeadingTag, HeadingSize> = {
   h1: 'xl',
   h2: 'lg',
   h3: 'md',

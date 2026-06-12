@@ -20,6 +20,27 @@ Path aliases (see [tsconfig.json](tsconfig.json)):
 - `@/` → `./src/`
 - `@payload-config` → `./src/payload.config.ts`
 
+## Components
+
+Reusable UI components located in `src/components/`:
+
+### Base Components (`src/components/base/`)
+- **Box** — Flexible layout wrapper (defaults to `div` with `flex` display)
+- **Button** — Styled button with variants (`primary`, `secondary`, `tertiary`) and sizes (`sm`, `md`, `lg`)
+- **ButtonLink** — Link component styled as a button
+- **Grid** — Grid layout component for multi-column layouts
+- **Heading** — Semantic heading component with sizes (`sm`, `md`, `lg`, `xl`) and weights (`regular` to `extrabold`)
+- **Text** — Text component with semantic meaning (body, caption, etc.) and customizable styling
+
+### Feature Components (`src/components/`)
+- **Header** — Main header component with Logo and Navigation; uses Box as layout container
+- **Logo** — Brand logo/wordmark linking to home page; uses Heading for typography
+- **Navigation** — Navigation menu with ButtonLink items for main site pages
+- **Footer** — Footer with copyright and social media links; uses Box, Text, Heading, and Button components
+- **ThemeSwitcher** — Interactive theme selector with palette icon; fixed bottom-right position; uses Box, Button, Heading, and Text
+
+All components use CSS custom properties for theming (`--theme-*`, `--font-*`, `--text-*`, `--spacing-*`).
+
 ## Build & Test Commands
 
 | Command                   | Purpose                                                          |
@@ -36,16 +57,39 @@ Path aliases (see [tsconfig.json](tsconfig.json)):
 
 ## Environment Variables
 
-No `.env.example` exists. Create `.env` manually with:
+Create `.env.local` with the following variables:
 
-```
+```env
+# Payload CMS
 PAYLOAD_SECRET=<any-random-string>
-MONGODB_URI=mongodb://127.0.0.1/my-portfolio   # local
-# MONGODB_URI=mongodb://mongo/my-portfolio     # docker-compose
-BLOB_READ_WRITE_TOKEN=<vercel-blob-token>      # optional, for Vercel Blob storage
+
+# MongoDB
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/?retryWrites=true&w=majority
+# Local development alternative:
+# MONGODB_URI=mongodb://127.0.0.1/my-portfolio
+
+# Vercel Blob Storage
+BLOB_STORE_ID=<vercel-blob-store-id>
+BLOB_READ_WRITE_TOKEN=vercel_blob_rw_<token>
+
+# Email Service (Mailgun)
+MAIL_GUN_API_KEY=<mailgun-api-key>
+MAIL_GUN_SANDBOX_DOMAIN=<mailgun-sandbox-domain>
+MAIL_TO=<recipient-email>
+
+# Vercel OIDC (for Vercel deployments)
+VERCEL_OIDC_TOKEN=<vercel-oidc-token>
 ```
 
-Docker: run `docker-compose up` to start MongoDB + app together.
+### Local Development Setup
+
+For local development without Vercel services:
+```env
+PAYLOAD_SECRET=dev-secret-key
+MONGODB_URI=mongodb://127.0.0.1/my-portfolio
+```
+
+Then run `docker-compose up` to start MongoDB, or use an existing MongoDB instance.
 
 ## Key Conventions
 

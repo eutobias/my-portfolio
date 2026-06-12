@@ -4,6 +4,8 @@ import '@/assets/styles.css'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
 import config from '@/payload.config'
+import { Header } from '@/components/header/Header'
+import { Footer } from '@/components/footer/Footer'
 
 export const metadata = {
   description: `Tobias is a Senior Full-Stack Developer 
@@ -77,27 +79,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body>
         <ThemeProvider>
           {header && (
-            <header>
-              <span>{header.siteName}</span>
-              {nav && (
-                <nav>
-                  <ul>
-                    {(['home', 'projects', 'about', 'contact'] as const).map((key) => (
-                      <li key={key}>
-                        <a
-                          href={
-                            (nav[key] as { label: string; link?: string }).link ??
-                            `/${key === 'home' ? '' : key}`
-                          }
-                        >
-                          {nav[key].label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              )}
-            </header>
+            <Header data={header} />
           )}
 
           {children}
@@ -105,22 +87,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <ThemeSwitcher />
 
           {footer && (
-            <footer>
-              <p>{footer.info.name}</p>
-              <p>{footer.info.description}</p>
-              {footer.socialNetworks && footer.socialNetworks.length > 0 && (
-                <ul>
-                  {footer.socialNetworks.map((sn) => (
-                    <li key={sn.id}>
-                      <a href={sn.link} target="_blank" rel="noopener noreferrer">
-                        {sn.site}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <p>{footer.info.copyright}</p>
-            </footer>
+            <Footer data={footer} />
           )}
         </ThemeProvider>
       </body>

@@ -1,7 +1,5 @@
+import { Size, Variant } from '@/components/base/types'
 import type { CSSProperties, ButtonHTMLAttributes } from 'react'
-
-type Variant = 'primary' | 'secondary' | 'tertiary'
-type Size = 'sm' | 'md' | 'lg'
 
 export interface ButtonBaseProps {
   variant?: Variant
@@ -21,9 +19,14 @@ const variantStyles: Record<Variant, CSSProperties> = {
     color: 'var(--theme-secondary-text)',
     borderColor: 'var(--theme-border)',
   },
-  tertiary: {
+  accent: {
     backgroundColor: 'var(--theme-accent)',
     color: 'var(--theme-accent-text)',
+    borderColor: 'var(--theme-border)',
+  },
+  highlight: {
+    backgroundColor: 'var(--theme-highlight)',
+    color: 'var(--theme-highlight-text)',
     borderColor: 'var(--theme-border)',
   },
 }
@@ -50,10 +53,10 @@ export function getButtonStyle(variant: Variant, size: Size, style?: CSSProperti
     justifyContent: 'center',
     fontFamily: 'var(--font-body)',
     fontWeight: 'var(--font-bold)',
-    border: '3px solid',
+    border: '4px solid',
     cursor: 'pointer',
     transition: 'transform 0.1s, box-shadow 0.1s',
-    boxShadow: '4px 4px 0px 0px rgba(0,0,0,0.2)',
+    boxShadow: '4px 4px 0px 0px rgba(0,0,0,1)',
     lineHeight: 'var(--line-height-normal)',
     ...variantStyles[variant],
     ...sizeStyles[size],
@@ -74,7 +77,11 @@ export function Button({
   ...rest
 }: ButtonProps) {
   return (
-    <button className={className} style={getButtonStyle(variant, size, style)} {...rest}>
+    <button
+      className={`hover:translate-x-px hover:translate-y-px transition-all ${className}`}
+      style={getButtonStyle(variant, size, style)}
+      {...rest}
+    >
       {children}
     </button>
   )

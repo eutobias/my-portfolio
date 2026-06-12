@@ -1,21 +1,20 @@
+import { Color, TextSize, TextTag, Weight } from '@/components/base/types'
 import type { CSSProperties } from 'react'
 
-type Size = 'body-lg' | 'body-md' | 'body-sm' | 'mono-lg' | 'mono-md' | 'mono-sm'
-type Weight = 'regular' | 'medium' | 'semibold' | 'bold' | 'extrabold'
-type Color = 'default' | 'muted' | 'primary' | 'secondary' | 'tertiary'
-type Tag = 'p' | 'span' | 'small' | 'strong' | 'em' | 'label' | 'code'
+
 
 interface TextProps {
   children: React.ReactNode
-  size?: Size
+  size?: TextSize
   weight?: Weight
   color?: Color
-  as?: Tag
+  as?: TextTag
   className?: string
   style?: CSSProperties
+  colorfull?: boolean
 }
 
-const sizeVar: Record<Size, string> = {
+const sizeVar: Record<TextSize, string> = {
   'body-lg': 'var(--text-body-lg)',
   'body-md': 'var(--text-body-md)',
   'body-sm': 'var(--text-body-sm)',
@@ -37,7 +36,17 @@ const colorVar: Record<Color, string> = {
   muted: 'var(--theme-text-muted)',
   primary: 'var(--theme-primary-text)',
   secondary: 'var(--theme-secondary-text)',
-  tertiary: 'var(--theme-accent-text)',
+  accent: 'var(--theme-accent-text)',
+  highlight: 'var(--theme-highlight-text)',
+}
+
+const colorfullVar: Record<Color, string> = {
+  default: 'var(--theme-text)',
+  muted: 'var(--theme-text-muted)',
+  primary: 'var(--theme-primary)',
+  secondary: 'var(--theme-secondary)',
+  accent: 'var(--theme-accent)',
+  highlight: 'var(--theme-highlight)',
 }
 
 export function Text({
@@ -48,6 +57,7 @@ export function Text({
   as: Tag = 'p',
   className,
   style,
+  colorfull = false
 }: TextProps) {
   return (
     <Tag
@@ -55,7 +65,7 @@ export function Text({
       style={{
         fontSize: sizeVar[size],
         fontWeight: weightVar[weight],
-        color: colorVar[color],
+        color: colorfull ? colorfullVar[color] : colorVar[color],
         fontFamily: size.startsWith('mono') ? 'var(--font-mono)' : 'var(--font-body)',
         ...style,
       }}
