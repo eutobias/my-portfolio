@@ -78,7 +78,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`hover:translate-x-px hover:translate-y-px transition-all ${className}`}
+      className={`hover:translate-x-px hover:translate-y-px transition-transform ${className}`}
       style={getButtonStyle(variant, size, style)}
       {...rest}
     >

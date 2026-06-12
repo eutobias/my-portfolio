@@ -16,7 +16,7 @@ export function ButtonLink({
 }: ButtonLinkProps) {
   return (
     <Link
-      className={`hover:translate-x-px hover:translate-y-px transition-all ${className}`}
+      className={`hover:translate-x-px hover:translate-y-px transition-transform ${className}`}
       style={getButtonStyle(variant, size, style)}
       {...rest}
     >

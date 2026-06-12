@@ -4,18 +4,21 @@ import { Box } from '@/components/base/Box'
 import { Heading } from '@/components/base/Heading'
 import type { Media } from '@/payload-types'
 import { Tag } from '@/components/base/Tag'
+import { ButtonLink } from '@/components/base/ButtonLink'
+import { ArrowUpRight } from 'lucide-react'
 
 /** Lexical rich text state — same shape the Payload CMS API returns for richtext fields. */
 type RichTextData = Parameters<typeof RichText>[0]['data']
 
 interface ProjectCardProps {
+  slug: string
   title: string
   content: RichTextData
   stacks: { title: string; items: { item: string }[] }[]
   media: Media | undefined
 }
 
-export function ProjectCard({ title, content, stacks, media }: ProjectCardProps) {
+export function ProjectCard({ slug, title, content, stacks, media }: ProjectCardProps) {
   return (
     <Box
       className="flex-col gap-4 border-4 p-6"
@@ -51,17 +54,13 @@ export function ProjectCard({ title, content, stacks, media }: ProjectCardProps)
         className="text-sm leading-relaxed font-mono font-medium"
         style={{ color: 'var(--theme-text-muted)' }}
       >
-        <RichText data={content} />
+        {content}
       </div>
 
-      {/* Stack Tags */}
-      {stacks.length > 0 && (
-        <Box className="flex-wrap gap-2 mt-auto">
-          {stacks.flatMap((group) =>
-            group.items.map(({ item }, idx) => <Tag item={item} key={`${group.title}-${idx}`} />),
-          )}
-        </Box>
-      )}
+      <ButtonLink href={`/projects/${slug}`} variant="secondary" className="mt-auto">
+        See the project
+        <ArrowUpRight className="w-4 h-4" />
+      </ButtonLink>
     </Box>
   )
 }

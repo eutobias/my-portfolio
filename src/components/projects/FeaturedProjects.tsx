@@ -6,6 +6,8 @@ import { SectionHeader } from '@/components/base/SectionHeader'
 import { ProjectCard } from '@/components/projects/ProjectCard'
 import type { Media, Project } from '@/payload-types'
 import { ButtonLink } from '@/components/base/ButtonLink'
+import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
+import { truncate } from '@/utils/truncate'
 
 interface FeaturedProjectsData {
   title: string
@@ -50,8 +52,9 @@ export function FeaturedProjects({ data }: FeaturedProjectsProps) {
               return (
                 <ProjectCard
                   key={id ?? p.id}
-                  title={p.title}
-                  content={p.content}
+                  slug={p.slug}
+                  title={truncate(p.title, 50)}
+                  content={truncate(extractTextFromLexical(p.content))}
                   stacks={p.stacks}
                   media={firstMedia}
                 />
