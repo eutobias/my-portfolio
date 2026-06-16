@@ -176,6 +176,24 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    desktop?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -332,6 +350,30 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+  sizes?:
+    | T
+    | {
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        desktop?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -570,6 +612,16 @@ export interface About {
       [k: string]: unknown;
     };
   };
+  numbersWindow: {
+    title: string;
+    numbersList?:
+      | {
+          label: string;
+          value: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   skills: {
     title: string;
     skills: {
@@ -589,20 +641,9 @@ export interface About {
       startAt: string;
       endAt?: string | null;
       description: {
-        root: {
-          type: string;
-          children: {
-            type: any;
-            version: number;
-            [k: string]: unknown;
-          }[];
-          direction: ('ltr' | 'rtl') | null;
-          format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-          indent: number;
-          version: number;
-        };
-        [k: string]: unknown;
-      };
+        Item?: string | null;
+        id?: string | null;
+      }[];
       id?: string | null;
     }[];
   };
@@ -840,6 +881,18 @@ export interface AboutSelect<T extends boolean = true> {
         title?: T;
         intro?: T;
       };
+  numbersWindow?:
+    | T
+    | {
+        title?: T;
+        numbersList?:
+          | T
+          | {
+              label?: T;
+              value?: T;
+              id?: T;
+            };
+      };
   skills?:
     | T
     | {
@@ -868,7 +921,12 @@ export interface AboutSelect<T extends boolean = true> {
               company?: T;
               startAt?: T;
               endAt?: T;
-              description?: T;
+              description?:
+                | T
+                | {
+                    Item?: T;
+                    id?: T;
+                  };
               id?: T;
             };
       };

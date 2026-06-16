@@ -1,5 +1,13 @@
 import type { GlobalConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import {
+  lexicalEditor,
+  BoldFeature,
+  ItalicFeature,
+  UnderlineFeature,
+  LinkFeature,
+  FixedToolbarFeature,
+  InlineToolbarFeature,
+} from '@payloadcms/richtext-lexical'
 
 export const About: GlobalConfig = {
   slug: 'about',
@@ -16,14 +24,13 @@ export const About: GlobalConfig = {
       type: 'richText',
       required: true,
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => [
-          ...rootFeatures.filter(
-            (feature) =>
-              feature.key === 'bold' ||
-              feature.key === 'italic' ||
-              feature.key === 'underline' ||
-              feature.key === 'link',
-          ),
+        features: [
+          BoldFeature(),
+          ItalicFeature(),
+          UnderlineFeature(),
+          LinkFeature(),
+          FixedToolbarFeature(),
+          InlineToolbarFeature(),
         ],
       }),
     },
@@ -44,16 +51,45 @@ export const About: GlobalConfig = {
           type: 'richText',
           required: true,
           editor: lexicalEditor({
-            features: ({ rootFeatures }) => [
-              ...rootFeatures.filter(
-                (feature) =>
-                  feature.key === 'bold' ||
-                  feature.key === 'italic' ||
-                  feature.key === 'underline' ||
-                  feature.key === 'link',
-              ),
+            features: [
+              BoldFeature(),
+              ItalicFeature(),
+              UnderlineFeature(),
+              LinkFeature(),
+              FixedToolbarFeature(),
+              InlineToolbarFeature(),
             ],
           }),
+        },
+      ],
+    },
+
+    {
+      name: 'numbersWindow',
+      type: 'group',
+      label: 'Professional Summary - Numbers Window',
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'numbersList',
+          label: 'Numbers List',
+          type: 'array',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'value',
+              type: 'text',
+              required: true,
+            },
+          ],
         },
       ],
     },
@@ -124,30 +160,25 @@ export const About: GlobalConfig = {
             },
             {
               name: 'startAt',
-              type: 'date',
+              type: 'text',
               required: true,
             },
             {
               name: 'endAt',
-              type: 'date',
+              type: 'text',
               required: false,
             },
             {
               name: 'description',
-              type: 'richText',
+              type: 'array',
               required: true,
-              editor: lexicalEditor({
-                features: ({ rootFeatures }) => [
-                  ...rootFeatures.filter(
-                    (feature) =>
-                      feature.key === 'bold' ||
-                      feature.key === 'italic' ||
-                      feature.key === 'underline' ||
-                      feature.key === 'link' ||
-                      feature.key === 'bulletedList',
-                  ),
-                ],
-              }),
+              fields: [
+                {
+                  name: 'Item',
+                  type: 'text',
+                  required: false,
+                },
+              ],
             },
           ],
         },

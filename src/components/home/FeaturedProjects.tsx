@@ -1,9 +1,9 @@
-import { ArrowUpRight, FolderOpen } from 'lucide-react'
+import { ArrowUpRight, Briefcase, FolderOpen } from 'lucide-react'
 import { Container } from '@/components/base/Container'
 import { Box } from '@/components/base/Box'
 import { Grid } from '@/components/base/Grid'
 import { SectionHeader } from '@/components/base/SectionHeader'
-import { ProjectCard } from '@/components/projects/ProjectCard'
+import { ProjectCard } from '@/components/base/ProjectCard'
 import type { Media, Project } from '@/payload-types'
 import { ButtonLink } from '@/components/base/ButtonLink'
 import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
@@ -38,7 +38,7 @@ export function FeaturedProjects({ data }: FeaturedProjectsProps) {
           {/* Header + CTA row */}
           <Box className="items-center justify-between gap-4">
             <SectionHeader
-              icon={<FolderOpen className="w-8 h-8" style={{ color: 'var(--theme-accent)' }} />}
+              icon={<Briefcase className="w-8 h-8" style={{ color: 'var(--theme-primary)' }} />}
               title={data.title}
             />
           </Box>

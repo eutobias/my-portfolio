@@ -1,33 +1,29 @@
-import Image from 'next/image'
-import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Box } from '@/components/base/Box'
-import { Heading } from '@/components/base/Heading'
-import type { Media } from '@/payload-types'
-import { Tag } from '@/components/base/Tag'
 import { ButtonLink } from '@/components/base/ButtonLink'
+import { Card } from '@/components/base/Card'
+import { Heading } from '@/components/base/Heading'
+import { Tag } from '@/components/base/Tag'
+import { Text } from '@/components/base/Text'
+import type { Media } from '@/payload-types'
 import { ArrowUpRight } from 'lucide-react'
-
-/** Lexical rich text state — same shape the Payload CMS API returns for richtext fields. */
-type RichTextData = Parameters<typeof RichText>[0]['data']
+import Image from 'next/image'
 
 interface ProjectCardProps {
   slug: string
   title: string
   content: string
   stacks?: { title: string; items: { item: string }[] }[]
-  media: Media | undefined
+  media: {
+    url: string
+    alt: string
+    width?: number
+    height?: number
+  }
 }
 
 export function ProjectCard({ slug, title, content, stacks, media }: ProjectCardProps) {
   return (
-    <Box
-      className="flex-col gap-4 border-4 p-6"
-      style={{
-        backgroundColor: 'var(--theme-bg-secondary)',
-        borderColor: 'var(--theme-border)',
-        boxShadow: '6px 6px 0px 0px var(--theme-border)',
-      }}
-    >
+    <Card>
       {/* Project Image */}
       {media?.url && (
         <Box
@@ -37,8 +33,8 @@ export function ProjectCard({ slug, title, content, stacks, media }: ProjectCard
           <Image
             alt={media.alt}
             src={media.url}
-            width={media.width ?? 600}
-            height={media.height ?? 350}
+            width={media.width}
+            height={media.height}
             className="w-full h-48 object-cover"
           />
         </Box>
@@ -50,12 +46,10 @@ export function ProjectCard({ slug, title, content, stacks, media }: ProjectCard
       </Heading>
 
       {/* Content */}
-      <div
-        className="text-sm leading-relaxed font-mono font-medium"
-        style={{ color: 'var(--theme-text-muted)' }}
-      >
+      <Text color="muted" size="mono-lg">
         {content}
-      </div>
+
+      </Text>
 
       {!!(stacks && stacks?.length > 0) && (
         <Box className="flex-row flex-wrap gap-2">
@@ -67,6 +61,6 @@ export function ProjectCard({ slug, title, content, stacks, media }: ProjectCard
         See the project
         <ArrowUpRight className="w-4 h-4" />
       </ButtonLink>
-    </Box>
+    </Card>
   )
 }

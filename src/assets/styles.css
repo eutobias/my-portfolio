@@ -1,6 +1,54 @@
 @import 'tailwindcss';
 @import './themes.css';
 
+/* ==========================================
+   Tailwind v4 Theme Tokens
+   Mapeia as variáveis CSS em utilitários:
+   text-{name}, bg-{name}, border-{name}, etc.
+   ========================================== */
+@theme {
+  /* Backgrounds */
+  --color-bg: var(--theme-bg);
+  --color-bg-secondary: var(--theme-bg-secondary);
+
+  /* Text */
+  --color-text: var(--theme-text);
+  --color-text-muted: var(--theme-text-muted);
+
+  /* Border */
+  --color-border: var(--theme-border);
+
+  /* Primary */
+  --color-primary: var(--theme-primary);
+  --color-primary-text: var(--theme-primary-text);
+
+  /* Secondary */
+  --color-secondary: var(--theme-secondary);
+  --color-secondary-text: var(--theme-secondary-text);
+
+  /* Accent */
+  --color-accent: var(--theme-accent);
+  --color-accent-text: var(--theme-accent-text);
+
+  /* Highlight */
+  --color-highlight: var(--theme-highlight);
+  --color-highlight-text: var(--theme-highlight-text);
+
+  /* Typography */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  /* Spacing */
+  --spacing-xs: var(--spacing-xs);
+  --spacing-sm: var(--spacing-sm);
+  --spacing-md: var(--spacing-md);
+  --spacing-lg: var(--spacing-lg);
+  --spacing-xl: var(--spacing-xl);
+  --spacing-2xl: var(--spacing-2xl);
+  --spacing-3xl: var(--spacing-3xl);
+}
+
 * {
   box-sizing: border-box;
 }

@@ -2,6 +2,7 @@ import { Laptop, Server, Code } from 'lucide-react'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { Box } from '@/components/base/Box'
 import { Heading } from '@/components/base/Heading'
+import { Card, CardProps } from '@/components/base/Card'
 
 type ServiceArea = 'frontend' | 'backend' | 'devops'
 
@@ -21,19 +22,19 @@ const AREA_ICONS: Record<ServiceArea, React.ReactNode> = {
   devops: <Code className="w-6 h-6" />,
 }
 
-const AREA_ACCENT_VARS: Record<ServiceArea, { shadow: string; bg: string; text: string }> = {
+const AREA_ACCENT_VARS: Record<ServiceArea, { shadow: CardProps["shadowColor"]; bg: string; text: string }> = {
   frontend: {
-    shadow: 'var(--theme-secondary)',
+    shadow: 'secondary',
     bg: 'var(--theme-secondary)',
     text: 'var(--theme-secondary-text)',
   },
   backend: {
-    shadow: 'var(--theme-primary)',
+    shadow: 'primary',
     bg: 'var(--theme-primary)',
     text: 'var(--theme-primary-text)',
   },
   devops: {
-    shadow: 'var(--theme-accent)',
+    shadow: 'accent',
     bg: 'var(--theme-accent)',
     text: 'var(--theme-accent-text)',
   },
@@ -43,14 +44,7 @@ export function ServiceCard({ area, title, intro }: ServiceCardProps) {
   const accents = AREA_ACCENT_VARS[area]
 
   return (
-    <Box
-      className="flex-col gap-4 border-4 p-6"
-      style={{
-        backgroundColor: 'var(--theme-bg-secondary)',
-        borderColor: 'var(--theme-border)',
-        boxShadow: `6px 6px 0px 0px ${accents.shadow}`,
-      }}
-    >
+    <Card shadowColor={accents.shadow}>
       {/* Icon Box */}
       <Box
         className="w-12 h-12 items-center justify-center border-4"
@@ -74,6 +68,6 @@ export function ServiceCard({ area, title, intro }: ServiceCardProps) {
       >
         <RichText data={intro} />
       </div>
-    </Box>
+    </Card>
   )
 }

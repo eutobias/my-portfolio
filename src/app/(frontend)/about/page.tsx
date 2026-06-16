@@ -1,8 +1,20 @@
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
+import { User, FileText, Briefcase, Terminal } from 'lucide-react'
 
 import config from '@/payload.config'
+import { Container } from '@/components/base/Container'
+import { Box } from '@/components/base/Box'
+import { SectionHeader } from '@/components/base/SectionHeader'
+import { SkillsSection } from '@/components/about/SkillsSection'
+import { ExperienceCard } from '@/components/about/ExperienceCard'
+import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
+import { PageTitleHeader } from '@/components/base/PageTitleHeader'
+import { Card } from '@/components/base/Card'
+import { Heading } from '@/components/base/Heading'
+import { ProfessionalSummary } from '@/components/about/ProfessionalSummary'
+import { ExperienceList } from '@/components/about/ExperienceList'
 
 export default async function AboutPage() {
   const payloadConfig = await config
@@ -11,54 +23,31 @@ export default async function AboutPage() {
   const about = await payload.findGlobal({ slug: 'about', depth: 1 }).catch(() => null)
   if (!about) return notFound()
 
-  const { title, intro, professionalSummary, skills, experience } = about
+  const { title, intro, professionalSummary, numbersWindow, skills, experience } = about
 
   return (
     <main>
-      {/* Intro */}
-      <section>
-        <h1>{title}</h1>
-        <RichText data={intro} />
-      </section>
+      <Container className="py-12 gap-16">
+        <PageTitleHeader
+          icon={<User className="w-10 h-10" style={{ color: 'var(--theme-secondary)' }} />}
+          title={title}
+          intro={extractTextFromLexical(intro)}
+        />
 
-      {/* Professional Summary */}
-      <section>
-        <h2>{professionalSummary.title}</h2>
-        <RichText data={professionalSummary.intro} />
-      </section>
+        <ProfessionalSummary 
+          title={professionalSummary.title} 
+          intro={professionalSummary.intro}
+          numbersTitle={numbersWindow.title}
+          numbers={numbersWindow.numbersList || []}
+         />
 
-      {/* Skills */}
-      <section>
-        <h2>{skills.title}</h2>
-        {skills.skills.map((group) => (
-          <div key={group.id}>
-            <h3>{group.title}</h3>
-            <ul>
-              {group.tags.map((t) => (
-                <li key={t.id}>{t.tag}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </section>
+        {/* Skills */}
+        <SkillsSection title={skills.title} skillGroups={skills.skills} />
 
-      {/* Experience */}
-      <section>
-        <h2>{experience.title}</h2>
-        <ul>
-          {experience.experiences.map((exp) => (
-            <li key={exp.id}>
-              <h3>{exp.name}</h3>
-              <p>{exp.company}</p>
-              <p>
-                {exp.startAt}
-                {exp.endAt ? ` – ${exp.endAt}` : ' – Present'}
-              </p>
-              <RichText data={exp.description} />
-            </li>
-          ))}
-        </ul>
-      </section>
+        {/* Experience */}
+        <ExperienceList experience={experience} />
+
+      </Container>
     </main>
   )
 }

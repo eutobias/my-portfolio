@@ -3,7 +3,7 @@ import { Container } from '@/components/base/Container'
 import { Box } from '@/components/base/Box'
 import { Grid } from '@/components/base/Grid'
 import { SectionHeader } from '@/components/base/SectionHeader'
-import { ServiceCard } from '@/components/whatido/ServiceCard'
+import { ServiceCard } from '@/components/home/ServiceCard'
 import { Award } from 'lucide-react'
 
 type ServiceArea = 'frontend' | 'backend' | 'devops'

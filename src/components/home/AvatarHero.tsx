@@ -9,9 +9,9 @@ interface AvatarHeroProps {
 
 export function AvatarHero({ name, logo }: AvatarHeroProps) {
   return (
-    <Box className="w-full xl:w-auto justify-center shrink-0">
+    <Box className="w-full lg:w-1/3 justify-center shrink-0">
       <Box
-        className="border-4 p-8 w-full md:w-sm relative flex-col"
+        className="border-4 p-8 w-full relative flex-col"
         style={{
           backgroundColor: 'var(--theme-bg-secondary)',
           borderColor: 'var(--theme-border)',

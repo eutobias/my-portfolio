@@ -4,9 +4,9 @@ import { notFound } from 'next/navigation'
 import '@/assets/styles.css'
 import config from '@/payload.config'
 import type { Media } from '@/payload-types'
-import { Hero } from '@/components/hero/Hero'
-import { WhatIDo } from '@/components/whatido/WhatIDo'
-import { FeaturedProjects } from '@/components/projects/FeaturedProjects'
+import { Hero } from '@/components/home/Hero'
+import { WhatIDo } from '@/components/home/WhatIDo'
+import { FeaturedProjects } from '@/components/home/FeaturedProjects'
 
 export default async function HomePage() {
   const payloadConfig = await config

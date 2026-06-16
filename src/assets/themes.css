@@ -406,17 +406,15 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* ==========================================
-   THEME TRANSITION
-   ========================================== */
-* {
-  /* transition:
-    background-color var(--transition-slow) var(--easing-smooth),
-    color var(--transition-slow) var(--easing-smooth),
-    border-color var(--transition-slow) var(--easing-smooth); */
-}
-
-/* Desabilitar transição em elementos específicos se necessário */
-.no-theme-transition {
-  transition: none !important;
+.payload-richtext {
+  strong {
+    font-weight: var(--font-bold);
+    color: var(--theme-primary);
+  }
+  p {
+    margin-bottom: var(--spacing-md);
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }

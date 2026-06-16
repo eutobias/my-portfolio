@@ -1,11 +1,10 @@
 import { Box } from '@/components/base/Box'
-import { Grid } from '@/components/base/Grid'
+import { Container } from '@/components/base/Container'
 import { Heading } from '@/components/base/Heading'
 import { Text } from '@/components/base/Text'
-import { Container } from '@/components/base/Container'
-import { Badge } from '@/components/hero/Badge'
-import { AvatarHero } from '@/components/hero/AvatarHero'
-import { CtaButtons } from '@/components/hero/CtaButtons'
+import { AvatarHero } from '@/components/home/AvatarHero'
+import { Badge } from '@/components/home/Badge'
+import { CtaButtons } from '@/components/home/CtaButtons'
 
 interface HeroCTA {
   label: string
@@ -25,9 +24,9 @@ interface HeroProps {
 export function Hero({ badge, greeting, name, logo, description, ctaProject, ctaContact }: HeroProps) {
   return (
     <Container className="w-full mt-16">
-      <Box className="flex-col xl:flex-row w-full items-center justify-between gap-16">
+      <Box className="flex-col lg:flex-row w-full items-center justify-between gap-16">
         {/* Hero Text */}
-        <Box as="section" className="w-full xl:w-2xl shrink-0 flex-col gap-8">
+        <Box as="section" className="w-full xl:w-auto flex-col gap-8">
           <Badge text={badge} />
 
           <Heading as="h1" size="xl" weight="extrabold" className="leading-tight tracking-tight">

@@ -6,4 +6,4 @@ export type Color = 'default' | 'muted' | 'primary' | 'secondary' | 'accent' | '
 export type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 
 export type TextSize = 'body-lg' | 'body-md' | 'body-sm' | 'mono-lg' | 'mono-md' | 'mono-sm'
-export type TextTag = 'p' | 'span' | 'small' | 'strong' | 'em' | 'label' | 'code'
+export type TextTag = 'p' | 'span' | 'small' | 'strong' | 'em' | 'label' | 'code' | 'li'

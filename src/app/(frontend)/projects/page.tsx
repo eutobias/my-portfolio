@@ -8,9 +8,10 @@ import { Container } from '@/components/base/Container'
 import { Box } from '@/components/base/Box'
 import { Grid } from '@/components/base/Grid'
 import { SectionHeader } from '@/components/base/SectionHeader'
-import { ProjectCard } from '@/components/projects/ProjectCard'
+import { ProjectCard } from '@/components/base/ProjectCard'
 import { Layers } from 'lucide-react'
 import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
+import { ProjectList } from '@/components/projects/ProjectsList'
 
 export default async function ProjectsPage() {
   const payloadConfig = await config
@@ -27,35 +28,7 @@ export default async function ProjectsPage() {
 
   return (
     <main>
-      <Box as="section" className="w-full flex-col py-16">
-        <Container>
-          <Box className="flex-col gap-8">
-            <SectionHeader
-              icon={<Layers className="w-8 h-8" style={{ color: 'var(--theme-primary)' }} />}
-              title={intro.title}
-              intro={extractTextFromLexical(intro.description)}
-              className="gap-4 pb-8"
-            />
-
-            <Grid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {projects.map((project) => {
-                const firstMedia = project.medias?.[0]?.media as Media | undefined
-
-                return (
-                  <ProjectCard
-                    key={project.id}
-                    slug={project.slug}
-                    title={project.title}
-                    content={extractTextFromLexical(project.content)}
-                    stacks={project.stacks}
-                    media={firstMedia}
-                  />
-                )
-              })}
-            </Grid>
-          </Box>
-        </Container>
-      </Box>
+      <ProjectList intro={intro} projects={projects} />
     </main>
   )
 }
