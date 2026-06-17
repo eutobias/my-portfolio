@@ -43,12 +43,11 @@ export function ExperienceCard({
   startAt,
   endAt,
   description,
-  accentVar = 'var(--theme-highlight)',
 }: ExperienceCardProps) {
   return (
     <Box className={`flex-row gap-4 group relative`}>
       <div
-        className="w-7 h-7 border-4 rounded-full z-10
+        className="w-7 h-7 border-4 rounded-full shrink-0
         bg-secondary group-hover:bg-accent mt-6 hidden lg:flex"
       />
 

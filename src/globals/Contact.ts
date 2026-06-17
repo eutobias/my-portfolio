@@ -1,12 +1,7 @@
 import type { GlobalConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { BoldFeature, FixedToolbarFeature, InlineToolbarFeature, ItalicFeature, lexicalEditor, LinkFeature, UnderlineFeature } from '@payloadcms/richtext-lexical'
 
 const contactInfoFields = [
-  {
-    name: 'icon',
-    type: 'text' as const,
-    required: true,
-  },
   {
     name: 'value',
     type: 'text' as const,
@@ -34,14 +29,13 @@ export const Contact: GlobalConfig = {
       type: 'richText',
       required: true,
       editor: lexicalEditor({
-        features: ({ rootFeatures }) => [
-          ...rootFeatures.filter(
-            (feature) =>
-              feature.key === 'bold' ||
-              feature.key === 'italic' ||
-              feature.key === 'underline' ||
-              feature.key === 'link',
-          ),
+        features: [
+          BoldFeature(),
+          ItalicFeature(),
+          UnderlineFeature(),
+          LinkFeature(),
+          FixedToolbarFeature(),
+          InlineToolbarFeature(),
         ],
       }),
     },

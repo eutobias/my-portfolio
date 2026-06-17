@@ -675,17 +675,14 @@ export interface Contact {
   contactInfo: {
     title: string;
     email: {
-      icon: string;
       value: string;
       href?: string | null;
     };
     phone: {
-      icon: string;
       value: string;
       href?: string | null;
     };
     whatsapp: {
-      icon: string;
       value: string;
       href?: string | null;
     };
@@ -948,21 +945,18 @@ export interface ContactSelect<T extends boolean = true> {
         email?:
           | T
           | {
-              icon?: T;
               value?: T;
               href?: T;
             };
         phone?:
           | T
           | {
-              icon?: T;
               value?: T;
               href?: T;
             };
         whatsapp?:
           | T
           | {
-              icon?: T;
               value?: T;
               href?: T;
             };
