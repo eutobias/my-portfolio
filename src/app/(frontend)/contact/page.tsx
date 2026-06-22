@@ -13,18 +13,8 @@ import { Heading } from '@/components/base/Heading'
 import { Text } from '@/components/base/Text'
 import { Card } from '@/components/base/Card'
 import Head from 'next/head'
-
-function IconWrapper({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <Box
-      className={`
-        w-12 h-12 items-center justify-center border-4 
-        shadow-[3px_3px_0px_0px_var(--theme-border)] ${className || ''}`}
-    >
-      {children}
-    </Box>
-  )
-}
+import { ContactInfoList } from '@/components/contact/ContactInfoList'
+import { ContactForm } from '@/components/contact/ContactForm'
 
 export default async function ContactPage() {
   const payloadConfig = await config
@@ -45,86 +35,11 @@ export default async function ContactPage() {
         />
 
         <Box as="section" className="flex-col gap-16 lg:flex-row">
-          <Box className="flex-col gap-8">
-            <Heading size="md">{contactInfo.title}</Heading>
-            <ContactCard
-              icon={
-                <IconWrapper className="bg-primary">
-                  <Mail className="w-6 h-6" />
-                </IconWrapper>
-              }
-              label="Email"
-              value={contactInfo?.email?.value}
-              href={contactInfo?.email?.href || ''}
-            />
+          
+          <ContactInfoList contactInfo={contactInfo} />
 
-            <ContactCard
-              icon={
-                <IconWrapper className="bg-secondary">
-                  <Phone className="w-6 h-6" />
-                </IconWrapper>
-              }
-              label="Phone / Mobile"
-              value={contactInfo?.phone?.value}
-              href={contactInfo?.phone?.href || ''}
-            />
-
-            <ContactCard
-              icon={
-                <IconWrapper className="bg-accent">
-                  <MessageSquare className="w-6 h-6" />
-                </IconWrapper>
-              }
-              label="WhatsApp"
-              value={contactInfo?.whatsapp?.value}
-              href={contactInfo?.whatsapp?.href || ''}
-            />
-
-            <Card className="bg-highlight! text-highlight! gap-2!">
-              <Text size="body-md" className="font-bold! flex gap-2">
-                <CheckCheck className="w-6 h-6 text-primary" /> {contactInfo.answerTime.title}
-              </Text>
-              <Text size="mono-lg">{contactInfo.answerTime.text}</Text>
-            </Card>
-          </Box>
-          <Box className="w-full lg:w-2/3 justify-center shrink-0">
-            <Box
-              className="border-4 p-8 w-full relative flex-col"
-              style={{
-                backgroundColor: 'var(--theme-bg-secondary)',
-                borderColor: 'var(--theme-border)',
-                boxShadow: '8px 8px 0px 0px var(--theme-primary)',
-              }}
-            >
-              {/* Top Bar Decoration */}
-              <Box
-                className="absolute top-0 left-0 right-0 h-6 border-b-4 items-center px-2 gap-1.5"
-                style={{
-                  backgroundColor: 'var(--theme-border)',
-                  borderColor: 'var(--theme-border)',
-                }}
-              >
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
-                <span
-                  className="text-[10px] font-mono ml-auto"
-                  style={{ color: 'var(--theme-text-muted)' }}
-                >
-                  send_message.sh
-                </span>
-              </Box>
-
-              {/* Avatar Container */}
-              <Box className="mt-4 flex-col items-center text-center gap-4">
-               
-               <Text size="body-lg" weight="bold">
-                  Get in Touch
-                </Text>
-
-              </Box>
-            </Box>
-          </Box>
+          <ContactForm info={contactForm} />
+          
         </Box>
 
         {/* Contact Info */}

@@ -1,8 +1,6 @@
 import { Color, TextSize, TextTag, Weight } from '@/components/base/types'
 import type { CSSProperties } from 'react'
 
-
-
 interface TextProps {
   children: React.ReactNode
   size?: TextSize
@@ -12,6 +10,8 @@ interface TextProps {
   className?: string
   style?: CSSProperties
   colorfull?: boolean
+  id?: string
+  htmlFor?: string
 }
 
 const sizeVar: Record<TextSize, string> = {
@@ -57,10 +57,14 @@ export function Text({
   as: Tag = 'p',
   className,
   style,
-  colorfull = false
+  colorfull = false,
+  id,
+  ...props
 }: TextProps) {
   return (
     <Tag
+      {...props}
+      id={id}
       className={className}
       style={{
         fontSize: sizeVar[size],

@@ -15,6 +15,7 @@ import { About } from './globals/About'
 import { Contact } from './globals/Contact'
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
+import { contactHandler } from '@/endpoints/contact'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -36,6 +37,13 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.MONGODB_URI || '',
   }),
+  endpoints: [
+    {
+      path: '/contact',
+      method: 'post',
+      handler: contactHandler,
+    },
+  ],
   sharp,
   plugins: [
     vercelBlobStorage({
