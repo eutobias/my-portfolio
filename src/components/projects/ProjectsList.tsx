@@ -30,7 +30,7 @@ export function ProjectList({ intro, projects }: ProjectListProps) {
             alt: firstMedia?.alt || "",
             width: firstMedia?.sizes?.thumbnail?.width || 400,
             height: firstMedia?.sizes?.thumbnail?.height || 300,
-          }
+          } as Media
 
           return (
             <ProjectCard

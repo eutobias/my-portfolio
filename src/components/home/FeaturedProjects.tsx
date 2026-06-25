@@ -47,7 +47,7 @@ export function FeaturedProjects({ data }: FeaturedProjectsProps) {
           <Grid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {data.projects?.map(({ project, id }) => {
               const p = project as Project
-              const firstMedia = p.medias?.[0]?.media as Media | undefined
+              const firstMedia = p.medias?.[0]?.media as Media
 
               return (
                 <ProjectCard

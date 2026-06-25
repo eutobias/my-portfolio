@@ -13,12 +13,7 @@ interface ProjectCardProps {
   title: string
   content: string
   stacks?: { title: string; items: { item: string }[] }[]
-  media: {
-    url: string
-    alt: string
-    width?: number
-    height?: number
-  }
+  media?: Media
 }
 
 export function ProjectCard({ slug, title, content, stacks, media }: ProjectCardProps) {
@@ -33,8 +28,8 @@ export function ProjectCard({ slug, title, content, stacks, media }: ProjectCard
           <Image
             alt={media.alt}
             src={media.url}
-            width={media.width}
-            height={media.height}
+            width={media.width || 400}
+            height={media.height || 300}
             className="w-full h-48 object-cover"
           />
         </Box>
