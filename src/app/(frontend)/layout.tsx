@@ -1,11 +1,12 @@
-import React from 'react'
-import { getPayload } from 'payload'
 import '@/assets/styles.css'
-import { ThemeProvider } from '@/contexts/ThemeContext'
-import ThemeSwitcher from '@/components/ThemeSwitcher'
-import config from '@/payload.config'
-import { Header } from '@/components/header/Header'
 import { Footer } from '@/components/footer/Footer'
+import { Header } from '@/components/header/Header'
+import ThemeSwitcher from '@/components/ThemeSwitcher'
+import { ThemeProvider } from '@/contexts/ThemeContext'
+import config from '@/payload.config'
+import { getPayload } from 'payload'
+import React from 'react'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata = {
   description: `Tobias is a Senior Full-Stack Developer 
@@ -78,17 +79,14 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       </head>
       <body>
         <ThemeProvider>
-          {header && (
-            <Header data={header} />
-          )}
+          {header && <Header data={header} />}
 
           {children}
 
-          <ThemeSwitcher />
+          {/* <ThemeSwitcher /> */}
 
-          {footer && (
-            <Footer data={footer} />
-          )}
+          {footer && <Footer data={footer} />}
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
