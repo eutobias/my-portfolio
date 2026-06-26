@@ -1,10 +1,12 @@
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import Image from 'next/image'
-import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
+import { getPayload } from 'payload'
 
-import config from '@/payload.config'
 import type { Media } from '@/payload-types'
+import config from '@/payload.config'
+
+export const revalidate = 60
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

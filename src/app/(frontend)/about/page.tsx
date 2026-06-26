@@ -1,20 +1,16 @@
-import { RichText } from '@payloadcms/richtext-lexical/react'
-import { getPayload } from 'payload'
+import { User } from 'lucide-react'
 import { notFound } from 'next/navigation'
-import { User, FileText, Briefcase, Terminal } from 'lucide-react'
+import { getPayload } from 'payload'
 
-import config from '@/payload.config'
-import { Container } from '@/components/base/Container'
-import { Box } from '@/components/base/Box'
-import { SectionHeader } from '@/components/base/SectionHeader'
-import { SkillsSection } from '@/components/about/SkillsSection'
-import { ExperienceCard } from '@/components/about/ExperienceCard'
-import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
-import { PageTitleHeader } from '@/components/base/PageTitleHeader'
-import { Card } from '@/components/base/Card'
-import { Heading } from '@/components/base/Heading'
-import { ProfessionalSummary } from '@/components/about/ProfessionalSummary'
 import { ExperienceList } from '@/components/about/ExperienceList'
+import { ProfessionalSummary } from '@/components/about/ProfessionalSummary'
+import { SkillsSection } from '@/components/about/SkillsSection'
+import { Container } from '@/components/base/Container'
+import { PageTitleHeader } from '@/components/base/PageTitleHeader'
+import config from '@/payload.config'
+import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
+
+export const revalidate = 60
 
 export default async function AboutPage() {
   const payloadConfig = await config

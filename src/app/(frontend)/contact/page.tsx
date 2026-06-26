@@ -1,20 +1,16 @@
-import { RichText } from '@payloadcms/richtext-lexical/react'
-import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
+import { getPayload } from 'payload'
 
-import config from '@/payload.config'
-import { Container } from '@/components/base/Container'
-import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
-import { Bolt, CheckCheck, Mail, MessageSquare, Phone, Zap } from 'lucide-react'
-import { PageTitleHeader } from '@/components/base/PageTitleHeader'
-import { ContactCard } from '@/components/contact/ContactCard'
 import { Box } from '@/components/base/Box'
-import { Heading } from '@/components/base/Heading'
-import { Text } from '@/components/base/Text'
-import { Card } from '@/components/base/Card'
-import Head from 'next/head'
-import { ContactInfoList } from '@/components/contact/ContactInfoList'
+import { Container } from '@/components/base/Container'
+import { PageTitleHeader } from '@/components/base/PageTitleHeader'
 import { ContactForm } from '@/components/contact/ContactForm'
+import { ContactInfoList } from '@/components/contact/ContactInfoList'
+import config from '@/payload.config'
+import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
+import { Mail } from 'lucide-react'
+
+export const revalidate = 60
 
 export default async function ContactPage() {
   const payloadConfig = await config

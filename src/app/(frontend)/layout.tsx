@@ -4,9 +4,11 @@ import { Header } from '@/components/header/Header'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import config from '@/payload.config'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { getPayload } from 'payload'
 import React from 'react'
-import { SpeedInsights } from "@vercel/speed-insights/next"
+
+export const revalidate = 60
 
 export const metadata = {
   description: `Tobias is a Senior Full-Stack Developer 
@@ -83,7 +85,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
           {children}
 
-          {/* <ThemeSwitcher /> */}
+          <ThemeSwitcher />
 
           {footer && <Footer data={footer} />}
           <SpeedInsights />

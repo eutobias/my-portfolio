@@ -8,6 +8,8 @@ import { Hero } from '@/components/home/Hero'
 import { WhatIDo } from '@/components/home/WhatIDo'
 import { FeaturedProjects } from '@/components/home/FeaturedProjects'
 
+export const revalidate = 60
+
 export default async function HomePage() {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })

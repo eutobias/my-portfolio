@@ -1,17 +1,10 @@
-import { getPayload } from 'payload'
 import { notFound } from 'next/navigation'
-import { RichText } from '@payloadcms/richtext-lexical/react'
+import { getPayload } from 'payload'
 
-import config from '@/payload.config'
-import type { Media } from '@/payload-types'
-import { Container } from '@/components/base/Container'
-import { Box } from '@/components/base/Box'
-import { Grid } from '@/components/base/Grid'
-import { SectionHeader } from '@/components/base/SectionHeader'
-import { ProjectCard } from '@/components/base/ProjectCard'
-import { Layers } from 'lucide-react'
-import { extractTextFromLexical } from '@/utils/extractTextFromLexical'
 import { ProjectList } from '@/components/projects/ProjectsList'
+import config from '@/payload.config'
+
+export const revalidate = 60
 
 export default async function ProjectsPage() {
   const payloadConfig = await config
