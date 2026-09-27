@@ -1,0 +1,106 @@
+{
+  "title": "Mini Payload",
+  "collections": [
+    {
+      "slug": "posts",
+      "label": "Posts",
+      "icon": "◆",
+      "description": "Conteúdo editorial do site.",
+      "list": ["id", "title", "status", "author", "categories", "updatedAt"],
+      "fields": [
+        { "name": "title", "label": "Título", "type": "text", "required": true, "placeholder": "Meu primeiro post" },
+        { "name": "slug", "label": "Slug", "type": "text", "required": true, "help": "Identificador único na URL." },
+        { "name": "excerpt", "label": "Resumo", "type": "textarea", "placeholder": "Um resumo curto..." },
+        {
+          "name": "status",
+          "label": "Status",
+          "type": "select",
+          "required": true,
+          "defaultValue": "draft",
+          "options": [
+            { "label": "Rascunho", "value": "draft" },
+            { "label": "Em revisão", "value": "review" },
+            { "label": "Publicado", "value": "published" }
+          ]
+        },
+        { "name": "views", "label": "Visualizações", "type": "number", "defaultValue": 0, "min": 0 },
+        { "name": "featured", "label": "Destaque", "type": "boolean", "defaultValue": false },
+        { "name": "publishedAt", "label": "Publicado em", "type": "date" },
+        {
+          "name": "author",
+          "label": "Autor",
+          "type": "relation",
+          "relation": { "to": "authors", "type": "one-to-one" },
+          "help": "Lado muitos do relacionamento 1×N (um autor tem muitos posts)."
+        },
+        {
+          "name": "categories",
+          "label": "Categorias",
+          "type": "relation",
+          "relation": { "to": "categories", "type": "many-to-many" }
+        }
+      ]
+    },
+    {
+      "slug": "authors",
+      "label": "Autores",
+      "icon": "✦",
+      "description": "Pessoas que assinam o conteúdo.",
+      "list": ["id", "name", "email", "posts", "updatedAt"],
+      "fields": [
+        { "name": "name", "label": "Nome", "type": "text", "required": true },
+        { "name": "email", "label": "E-mail", "type": "email", "required": true },
+        { "name": "bio", "label": "Bio", "type": "textarea" },
+        {
+          "name": "profile",
+          "label": "Perfil",
+          "type": "relation",
+          "relation": { "to": "profiles", "type": "one-to-one" },
+          "help": "Relacionamento 1×1."
+        },
+        {
+          "name": "posts",
+          "label": "Posts",
+          "type": "relation",
+          "relation": { "to": "posts", "type": "one-to-many" },
+          "help": "Lado um do relacionamento 1×N."
+        }
+      ]
+    },
+    {
+      "slug": "categories",
+      "label": "Categorias",
+      "icon": "❖",
+      "description": "Agrupamento temático de posts.",
+      "list": ["id", "name", "posts"],
+      "fields": [
+        { "name": "name", "label": "Nome", "type": "text", "required": true },
+        { "name": "description", "label": "Descrição", "type": "textarea" },
+        {
+          "name": "posts",
+          "label": "Posts",
+          "type": "relation",
+          "relation": { "to": "posts", "type": "many-to-many" }
+        }
+      ]
+    },
+    {
+      "slug": "profiles",
+      "label": "Perfis",
+      "icon": "◈",
+      "description": "Dados extras dos autores (1×1).",
+      "list": ["id", "website", "location", "author"],
+      "fields": [
+        { "name": "website", "label": "Website", "type": "text" },
+        { "name": "location", "label": "Localização", "type": "text" },
+        {
+          "name": "author",
+          "label": "Autor",
+          "type": "relation",
+          "relation": { "to": "authors", "type": "one-to-one" },
+          "help": "Lado inverso do relacionamento 1×1."
+        }
+      ]
+    }
+  ]
+}
