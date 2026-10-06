@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 
-import { emptyValues } from "@/admin/schema";
+import { collectionLocales, emptyValues, isLocalizedField } from "@/admin/schema";
+import { localeLabel } from "@/schemas";
 import type {
   CollectionDef,
+  FieldDef,
   FieldValue,
   Item,
+  LocalizedValue,
   RelationOptionsMap,
 } from "@/admin/types";
 import { Box } from "@/components/box";
@@ -22,7 +25,9 @@ export type ItemFormProps = {
   formError: string | null;
   relationOptions: RelationOptionsMap;
   onSubmit: (values: Record<string, FieldValue>) => void;
-  onCancel: () => void;
+  onCancel?: () => void;
+  /** Hide the cancel button (e.g. standalone records, where there is no list to return to). */
+  hideCancel?: boolean;
 };
 
 function initialValues(
@@ -37,8 +42,17 @@ function initialValues(
   return base;
 }
 
+function asLocalized(value: FieldValue | undefined): LocalizedValue {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as LocalizedValue)
+    : {};
+}
+
 /**
  * Create/edit form rendered inside the drawer.
+ *
+ * Localized fields are shown in one tab per locale; language-independent fields
+ * live in a "Geral" section below the tabs.
  */
 export const ItemForm = ({
   collection,
@@ -49,14 +63,50 @@ export const ItemForm = ({
   relationOptions,
   onSubmit,
   onCancel,
+  hideCancel,
 }: ItemFormProps) => {
+  const locales = collectionLocales(collection);
+  const localizedFields = collection.fields.filter((field) =>
+    isLocalizedField(collection, field),
+  );
+  const sharedFields = collection.fields.filter(
+    (field) => !isLocalizedField(collection, field),
+  );
   const [values, setValues] = useState<Record<string, FieldValue>>(() =>
     initialValues(collection, item),
   );
+  const [locale, setLocale] = useState(locales[0] ?? "");
 
   const update = (name: string, value: FieldValue) => {
     setValues((previous) => ({ ...previous, [name]: value }));
   };
+
+  const updateLocalized = (
+    field: FieldDef,
+    loc: string,
+    value: FieldValue,
+  ) => {
+    setValues((previous) => ({
+      ...previous,
+      [field.name]: {
+        ...asLocalized(previous[field.name]),
+        [loc]: value,
+      },
+    }));
+  };
+
+  const renderField = (field: FieldDef, value: FieldValue, error?: string, onChange?: (v: FieldValue) => void) => (
+    <FieldControl
+      key={field.name}
+      field={field}
+      collectionSlug={collection.slug}
+      value={value ?? null}
+      error={error}
+      disabled={submitting}
+      relationOptions={relationOptions[field.name] ?? []}
+      onChange={onChange ?? ((next) => update(field.name, next))}
+    />
+  );
 
   return (
     <Box
@@ -75,27 +125,70 @@ export const ItemForm = ({
         </Box>
       ) : null}
 
-      {collection.fields.map((field) => (
-        <FieldControl
-          key={field.name}
-          field={field}
-          value={values[field.name] ?? null}
-          error={errors[field.name]}
-          disabled={submitting}
-          relationOptions={relationOptions[field.name] ?? []}
-          onChange={(value) => update(field.name, value)}
-        />
-      ))}
+      {localizedFields.length > 0 ? (
+        <Box className="flex-col gap-5">
+          <Box className="flex-wrap items-center gap-1 rounded-lg bg-gray-100 p-1">
+            {locales.map((code) => {
+              const active = code === locale;
+              return (
+                <button
+                  key={code}
+                  type="button"
+                  onClick={() => setLocale(code)}
+                  className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                    active
+                      ? "bg-white text-gray-900 shadow-sm"
+                      : "text-gray-500 hover:text-gray-900"
+                  }`}
+                >
+                  {localeLabel(code)}
+                </button>
+              );
+            })}
+          </Box>
+
+          {localizedFields.map((field) =>
+            renderField(
+              field,
+              asLocalized(values[field.name])[locale] ?? null,
+              errors[`${field.name}_${locale}`],
+              (value) => updateLocalized(field, locale, value),
+            ),
+          )}
+        </Box>
+      ) : null}
+
+      {sharedFields.length > 0 ? (
+        <Box className="flex-col gap-5 border-t border-gray-200 pt-5">
+          {localizedFields.length > 0 ? (
+            <Text
+              size="caption"
+              className="font-semibold uppercase tracking-wide text-gray-400"
+            >
+              Geral
+            </Text>
+          ) : null}
+          {sharedFields.map((field) =>
+            renderField(
+              field,
+              values[field.name] ?? null,
+              errors[field.name],
+            ),
+          )}
+        </Box>
+      ) : null}
 
       <Box className="items-center justify-end gap-2 border-t border-gray-200 pt-4">
-        <Button
-          type="button"
-          variant="secondary"
-          onClick={onCancel}
-          disabled={submitting}
-        >
-          Cancelar
-        </Button>
+        {hideCancel ? null : (
+          <Button
+            type="button"
+            variant="secondary"
+            onClick={onCancel}
+            disabled={submitting}
+          >
+            Cancelar
+          </Button>
+        )}
         <Button type="submit" variant="primary" disabled={submitting}>
           {submitting ? "Salvando…" : item ? "Salvar alterações" : "Criar item"}
         </Button>

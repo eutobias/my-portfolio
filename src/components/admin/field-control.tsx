@@ -1,11 +1,15 @@
-import type { FieldDef, FieldValue, RelationOption } from "@/admin/types";
+import type { FieldDef, FieldValue, MediaItem, RelationOption } from "@/admin/types";
 import { Box } from "@/components/box";
 import { FieldWrapper, inputClass } from "@/components/field-wrapper";
 import { Text } from "@/components/text";
+import { MediaControl } from "./media-control";
+import { MediaListControl } from "./media-list-control";
+import { ListControl } from "./list-control";
 import { RelationControl } from "./relation-control";
 
 export type FieldControlProps = {
   field: FieldDef;
+  collectionSlug: string;
   value: FieldValue;
   error?: string | undefined;
   disabled?: boolean | undefined;
@@ -18,6 +22,7 @@ export type FieldControlProps = {
  */
 export const FieldControl = ({
   field,
+  collectionSlug,
   value,
   error,
   disabled,
@@ -25,6 +30,44 @@ export const FieldControl = ({
   onChange,
 }: FieldControlProps) => {
   const id = `field-${field.name}`;
+
+  if (field.type === "media") {
+    return (
+      <MediaControl
+        field={field}
+        collectionSlug={collectionSlug}
+        value={typeof value === "string" ? value : ""}
+        error={error}
+        disabled={disabled}
+        onChange={onChange}
+      />
+    );
+  }
+
+  if (field.type === "media-list") {
+    return (
+      <MediaListControl
+        field={field}
+        collectionSlug={collectionSlug}
+        value={Array.isArray(value) ? (value as MediaItem[]) : []}
+        error={error}
+        disabled={disabled}
+        onChange={onChange}
+      />
+    );
+  }
+
+  if (field.type === "list") {
+    return (
+      <ListControl
+        field={field}
+        value={Array.isArray(value) ? (value as string[]) : []}
+        error={error}
+        disabled={disabled}
+        onChange={onChange}
+      />
+    );
+  }
 
   if (field.type === "relation") {
     return (

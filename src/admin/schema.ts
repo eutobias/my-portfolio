@@ -1,15 +1,39 @@
-import schemaJson from "../schema.json";
-import type {
-  CollectionDef,
-  FieldDef,
-  FieldValue,
-  SchemaDef,
-} from "./types";
+import { collections, defaultLocale, schemaTitle } from "@/schemas";
+import type { CollectionDef, FieldDef, FieldValue, LocalizedValue } from "./types";
 
-const schema = schemaJson as unknown as SchemaDef;
+export { collections, schemaTitle };
 
-export const schemaTitle = schema.title ?? "Admin";
-export const collections: CollectionDef[] = schema.collections ?? [];
+/** Field types that are localized by default. */
+const LOCALIZED_TYPES = new Set(["text", "textarea", "email", "list"]);
+
+/** Locales stored by a collection (falls back to the global default). */
+export function collectionLocales(collection: CollectionDef): string[] {
+  return collection.locales && collection.locales.length > 0
+    ? collection.locales
+    : [defaultLocale];
+}
+
+/** Whether a field is stored once per locale (`name_pt`, `name_en`). */
+export function isLocalizedField(
+  collection: CollectionDef,
+  field: FieldDef,
+): boolean {
+  if (field.localized !== undefined) return field.localized;
+  return LOCALIZED_TYPES.has(field.type);
+}
+
+/** Read the value of a (possibly localized) field for one locale. */
+export function valueForLocale(
+  collection: CollectionDef,
+  field: FieldDef,
+  item: Record<string, unknown>,
+  locale: string = defaultLocale,
+): FieldValue {
+  const raw = item[field.name];
+  if (!isLocalizedField(collection, field)) return raw as FieldValue;
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  return (raw as LocalizedValue)[locale] ?? null;
+}
 
 export function getCollections(): CollectionDef[] {
   return collections;
@@ -17,6 +41,11 @@ export function getCollections(): CollectionDef[] {
 
 export function getCollection(slug: string): CollectionDef | undefined {
   return collections.find((collection) => collection.slug === slug);
+}
+
+/** Whether a collection holds exactly one record. */
+export function isStandalone(collection: CollectionDef): boolean {
+  return collection.standalone === true;
 }
 
 /** SQLite table name for a collection. */
@@ -47,6 +76,10 @@ export function fieldDefault(field: FieldDef): FieldValue {
       return field.min ?? 0;
     case "relation":
       return relationIsMany(field) ? [] : null;
+    case "media-list":
+      return [];
+    case "list":
+      return [];
     case "select":
       return field.options?.[0]?.value ?? "";
     default:
@@ -57,8 +90,12 @@ export function fieldDefault(field: FieldDef): FieldValue {
 /** Empty record of values for a collection (used by the create form). */
 export function emptyValues(collection: CollectionDef): Record<string, FieldValue> {
   const values: Record<string, FieldValue> = {};
+  const locales = collectionLocales(collection);
   for (const field of collection.fields) {
-    values[field.name] = fieldDefault(field);
+    const fallback = fieldDefault(field);
+    values[field.name] = isLocalizedField(collection, field)
+      ? Object.fromEntries(locales.map((locale) => [locale, fallback]))
+      : fallback;
   }
   return values;
 }
@@ -69,7 +106,7 @@ export function itemLabel(collection: CollectionDef, item: Record<string, unknow
   const candidates = preferred ? [preferred, ...collection.fields] : collection.fields;
 
   for (const field of candidates) {
-    const value = item[field.name];
+    const value = valueForLocale(collection, field, item);
     if (typeof value === "string" && value.trim()) return value.trim();
   }
   return `#${String(item.id ?? "")}`;

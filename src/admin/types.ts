@@ -1,8 +1,10 @@
+import type { CollectionIconName } from "@/components/admin/collection-icon";
+
 /**
  * Shared descriptor types for the mini-CMS.
  *
- * The whole admin panel is generated from a single JSON document
- * (`src/schema.json`). These types describe that document.
+ * The whole admin panel is generated from the collection descriptors in
+ * `src/schemas`. These types describe those descriptors.
  */
 
 export type FieldType =
@@ -13,7 +15,10 @@ export type FieldType =
   | "boolean"
   | "select"
   | "date"
-  | "relation";
+  | "relation"
+  | "media"
+  | "media-list"
+  | "list";
 
 export type SelectOption = {
   label: string;
@@ -45,14 +50,43 @@ export type FieldDef = {
   max?: number;
   /** Only for `relation` fields. */
   relation?: RelationDef;
+  /**
+   * Only for `media` fields. Accepted types as MIME types (`image/png`,
+   * `image/*`) or extensions (`png`, `.png`). Uploads are stored under
+   * `public/files` and the field value is the served URL (`/files/<name>`).
+   * Omit to allow only images and PDFs.
+   */
+  accept?: string[];
+  /** Only for `media` fields. Maximum upload size in bytes. */
+  maxSize?: number;
+  /**
+   * Whether the field is stored per locale (`name_pt`, `name_en`). When
+   * omitted it defaults to `true` for editorial types (`text`, `textarea`,
+   * `email`, `list`) and `false` for structural ones. Set explicitly to force
+   * a text field (e.g. `slug`, `icon`) to stay language-independent.
+   */
+  localized?: boolean;
   defaultValue?: string | number | boolean;
 };
 
 export type CollectionDef = {
   slug: string;
   label: string;
-  icon?: string;
+  /** Optional Feather icon name (see `src/components/admin/collection-icon.tsx`). */
+  icon?: CollectionIconName;
   description?: string;
+  /**
+   * A standalone collection holds exactly one record (no list view). The admin
+   * edits the single item directly and the API exposes it at
+   * `/payload/:collection` via `GET`/`PATCH`.
+   */
+  standalone?: boolean;
+  /**
+   * Locales this collection stores, in tab order (e.g. `["pt", "en"]`).
+   * Drives the per-locale columns generated in the table. Defaults to the
+   * global `defaultLocale` when omitted.
+   */
+  locales?: string[];
   /**
    * Ordered list of columns shown in the list view. Accepts field names plus
    * the special `id`, `createdAt` and `updatedAt`. When omitted, all fields
@@ -67,8 +101,29 @@ export type SchemaDef = {
   collections: CollectionDef[];
 };
 
+/** A single entry of a `media-list` field. */
+export type MediaItem = {
+  url: string;
+  alt?: string;
+  /** At most one item per list is the principal (cover/highlight). */
+  primary?: boolean;
+};
+
+/** An ordered list of translated values, keyed by locale code. */
+export type LocalizedValue = {
+  [locale: string]: FieldValue;
+};
+
 /** Primitive value a field can hold. Relation values are numeric ids. */
-export type FieldValue = string | number | boolean | null | number[];
+export type FieldValue =
+  | string
+  | number
+  | boolean
+  | null
+  | number[]
+  | string[]
+  | MediaItem[]
+  | LocalizedValue;
 
 /** An option shown by a relation control and used to render labels. */
 export type RelationOption = {

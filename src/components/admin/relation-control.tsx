@@ -48,7 +48,7 @@ export const RelationControl = ({
           id={id}
           disabled={disabled}
           options={options}
-          selected={Array.isArray(value) ? value : []}
+          selected={Array.isArray(value) ? (value as number[]) : []}
           onChange={onChange}
         />
       ) : (

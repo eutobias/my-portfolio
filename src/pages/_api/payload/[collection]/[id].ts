@@ -95,6 +95,16 @@ export async function DELETE(
   const resolved = resolveCollection(params);
   if ("error" in resolved) return resolved.error;
 
+  if (resolved.collection.standalone) {
+    return Response.json(
+      {
+        message:
+          "Coleção standalone possui um único registro; ele não pode ser removido.",
+      },
+      { status: 405 },
+    );
+  }
+
   const removed = deleteItem(resolved.collection, resolved.id);
   if (!removed) {
     return Response.json({ message: "Item não encontrado." }, { status: 404 });

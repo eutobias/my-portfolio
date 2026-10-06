@@ -2,6 +2,7 @@ import { Link } from "waku";
 
 import { listItems } from "@/admin/db.server";
 import { collections, schemaTitle } from "@/admin/schema";
+import { CollectionIcon } from "@/components/admin/collection-icon";
 import { Badge } from "@/components/badge";
 import { Box } from "@/components/box";
 import { Text } from "@/components/text";
@@ -9,7 +10,9 @@ import { Text } from "@/components/text";
 export default async function AdminHomePage() {
   const stats = collections.map((collection) => ({
     collection,
-    total: listItems(collection, { limit: 1 }).total,
+    total: collection.standalone
+      ? 1
+      : listItems(collection, { limit: 1 }).total,
   }));
 
   return (
@@ -19,7 +22,7 @@ export default async function AdminHomePage() {
           {schemaTitle}
         </Text>
         <Text className="text-gray-500">
-          Painel gerado automaticamente a partir do descritor JSON.
+          Painel gerado automaticamente a partir dos descritores de coleção.
         </Text>
       </Box>
 
@@ -35,14 +38,17 @@ export default async function AdminHomePage() {
           >
             <Box className="items-center justify-between gap-3">
               <Box className="items-center gap-2">
-                <span aria-hidden className="text-lg">
-                  {collection.icon ?? "•"}
-                </span>
+                <CollectionIcon
+                  name={collection.icon}
+                  className="h-5 w-5 shrink-0 text-gray-500"
+                />
                 <Text size="subtitle" className="font-semibold text-gray-900">
                   {collection.label}
                 </Text>
               </Box>
-              <Badge tone="gray">{total}</Badge>
+              <Badge tone={collection.standalone ? "purple" : "gray"}>
+                {collection.standalone ? "Único" : total}
+              </Badge>
             </Box>
             <Text size="caption" className="text-gray-500">
               {collection.description ??

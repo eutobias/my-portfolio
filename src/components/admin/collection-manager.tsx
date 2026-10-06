@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import { itemLabel } from "@/admin/schema";
+import { itemLabel, valueForLocale } from "@/admin/schema";
 import type {
   CollectionDef,
   FieldDef,
@@ -184,7 +184,7 @@ export const CollectionManager = ({
     render: (row: Item) =>
       renderFieldValue(
         field,
-        row[field.name] ?? null,
+        valueForLocale(collection, field, row),
         relationOptions[field.name] ?? [],
       ),
   });

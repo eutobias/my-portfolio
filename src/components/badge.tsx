@@ -1,6 +1,6 @@
 import { Box, type BoxProps } from "./box";
 
-export type BadgeTone = "gray" | "green" | "amber" | "blue" | "red";
+export type BadgeTone = "gray" | "green" | "amber" | "blue" | "red" | "purple";
 
 export type BadgeProps = BoxProps<"span"> & {
   tone?: BadgeTone;
@@ -12,6 +12,7 @@ const tones: Record<BadgeTone, string> = {
   amber: "bg-amber-100 text-amber-700",
   blue: "bg-blue-100 text-blue-700",
   red: "bg-red-100 text-red-700",
+  purple: "bg-purple-100 text-purple-700",
 };
 
 /**

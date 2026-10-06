@@ -1,0 +1,68 @@
+import type { CollectionDef } from "@/admin/types";
+
+export const projects: CollectionDef = {
+  slug: "projects",
+  label: "Projetos",
+  icon: "folder",
+  description: "Cases e trabalhos selecionados.",
+  locales: ["pt", "en"],
+  list: ["id", "medias", "name", "slug", "order"],
+  fields: [
+    { name: "name", label: "Nome", type: "text", required: true },
+    {
+      name: "slug",
+      label: "Slug",
+      type: "text",
+      required: true,
+      help: "Identificador único na URL.",
+    },
+    { name: "category", label: "Categoria", type: "text", help: "Badge do card (ex.: Exposição Interativa)." },
+    { name: "subtitle", label: "Subtítulo", type: "text" },
+    { name: "description", label: "Descrição", type: "textarea" },
+    {
+      name: "frontend",
+      label: "Front-end",
+      type: "list",
+      help: "Lista de tecnologias de front-end.",
+    },
+    {
+      name: "backend",
+      label: "Back-end",
+      type: "list",
+      help: "Lista de tecnologias de back-end.",
+    },
+    { name: "role", label: "Meu papel", type: "text" },
+    { name: "teamSize", label: "Tamanho da equipe", type: "text" },
+    { name: "client", label: "Cliente", type: "text" },
+    { name: "year", label: "Data", type: "text", placeholder: "2023 - 2024", localized: false },
+    {
+      name: "highlights",
+      label: "Destaques",
+      type: "list",
+      help: "Lista de destaques do projeto.",
+    },
+    {
+      name: "challenges",
+      label: "Desafios",
+      type: "list",
+      help: "Lista de desafios enfrentados.",
+    },
+    {
+      name: "results",
+      label: "Resultados",
+      type: "list",
+      help: "Lista de resultados alcançados.",
+    },
+    { name: "url", label: "URL do projeto", type: "text", localized: false },
+    { name: "repo", label: "URL do código", type: "text", localized: false },
+    {
+      name: "medias",
+      label: "Mídias",
+      type: "media-list",
+      accept: ["image/*"],
+      maxSize: 5 * 1024 * 1024,
+      help: "Envie as imagens, ordene e marque uma como principal (capa).",
+    },
+    { name: "order", label: "Ordem", type: "number", defaultValue: 0, min: 0 },
+  ],
+};

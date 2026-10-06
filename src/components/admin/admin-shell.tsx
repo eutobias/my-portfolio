@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import { useRouter } from "waku";
 
+import type { AuthUser } from "@/auth/config";
 import type { CollectionDef } from "@/admin/types";
 import { Box } from "@/components/box";
 import { Button } from "@/components/button";
@@ -14,6 +15,7 @@ import { ToastProvider } from "./toast";
 export type AdminShellProps = {
   title: string;
   collections: CollectionDef[];
+  user: AuthUser;
   children: ReactNode;
 };
 
@@ -21,7 +23,7 @@ export type AdminShellProps = {
  * Responsive admin chrome: static sidebar on desktop, off-canvas drawer on
  * mobile, plus the toast provider for the whole admin area.
  */
-export const AdminShell = ({ title, collections, children }: AdminShellProps) => {
+export const AdminShell = ({ title, collections, user, children }: AdminShellProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { path } = useRouter();
 
@@ -29,6 +31,17 @@ export const AdminShell = ({ title, collections, children }: AdminShellProps) =>
   useEffect(() => {
     setMenuOpen(false);
   }, [path]);
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/auth/logout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+    } finally {
+      window.location.assign("/login");
+    }
+  };
 
   return (
     <ToastProvider>
@@ -71,6 +84,8 @@ export const AdminShell = ({ title, collections, children }: AdminShellProps) =>
           <Sidebar
             title={title}
             collections={collections}
+            user={user}
+            onLogout={() => void handleLogout()}
             onNavigate={() => setMenuOpen(false)}
           />
         </Box>

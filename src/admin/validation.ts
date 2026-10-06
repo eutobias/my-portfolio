@@ -1,5 +1,17 @@
-import { fieldDefault, relationIsMany } from "./schema";
-import type { CollectionDef, FieldDef, FieldValue } from "./types";
+import {
+  collectionLocales,
+  fieldDefault,
+  isLocalizedField,
+  relationIsMany,
+} from "./schema";
+import { isMediaUrl } from "./media";
+import type {
+  CollectionDef,
+  FieldDef,
+  FieldValue,
+  LocalizedValue,
+  MediaItem,
+} from "./types";
 
 export type ValidationResult = {
   ok: boolean;
@@ -84,6 +96,56 @@ function coerceField(
       if (id === null) return { error: "Relacionamento inválido." };
       return { value: id };
     }
+    case "media": {
+      const value = raw === null || raw === undefined ? "" : String(raw).trim();
+      if (!value) {
+        if (field.required) return { error: "Campo obrigatório." };
+        return { value: "" };
+      }
+      if (!value.startsWith("/files/") || value.includes("..")) {
+        return { error: "Arquivo inválido." };
+      }
+      return { value };
+    }
+    case "media-list": {
+      const list = Array.isArray(raw) ? raw : [];
+      const media: MediaItem[] = [];
+      let primarySeen = false;
+      for (const entry of list) {
+        const record = (
+          entry && typeof entry === "object"
+            ? entry
+            : { url: entry }
+        ) as { url?: unknown; alt?: unknown; primary?: unknown };
+        const url = String(record.url ?? "").trim();
+        if (!url) continue;
+        if (!isMediaUrl(url)) return { error: "Arquivo inválido." };
+        const primary = Boolean(record.primary) && !primarySeen;
+        if (primary) primarySeen = true;
+        media.push({
+          url,
+          alt: typeof record.alt === "string" ? record.alt : "",
+          primary,
+        });
+      }
+      if (field.required && media.length === 0) {
+        return { error: "Envie ao menos uma mídia." };
+      }
+      if (media.length > 0 && !primarySeen) media[0]!.primary = true;
+      return { value: media };
+    }
+    case "list": {
+      const source = Array.isArray(raw)
+        ? raw
+        : typeof raw === "string" && raw.trim()
+          ? raw.split("\n")
+          : [];
+      const items = source.map((entry) => String(entry).trim()).filter(Boolean);
+      if (field.required && items.length === 0) {
+        return { error: "Adicione ao menos um item." };
+      }
+      return { value: items };
+    }
     case "email": {
       const value = raw === null || raw === undefined ? "" : String(raw).trim();
       if (!value) {
@@ -120,6 +182,25 @@ export function coerceInput(
   for (const field of collection.fields) {
     const present = Object.prototype.hasOwnProperty.call(body, field.name);
     if (partial && !present) continue;
+
+    if (isLocalizedField(collection, field)) {
+      const rawObject = asRecord(present ? body[field.name] : {});
+      const value: LocalizedValue = {};
+      for (const locale of collectionLocales(collection)) {
+        const hasLocale = Object.prototype.hasOwnProperty.call(rawObject, locale);
+        if (partial && present && !hasLocale) continue;
+        const fallback = fieldDefault(field);
+        const raw = hasLocale ? rawObject[locale] : fallback;
+        const result = coerceField(field, raw);
+        if ("error" in result) {
+          errors[`${field.name}_${locale}`] = result.error;
+        } else {
+          value[locale] = result.value as string | string[];
+        }
+      }
+      values[field.name] = value;
+      continue;
+    }
 
     const raw = present ? body[field.name] : fieldDefault(field);
     const result = coerceField(field, raw);
