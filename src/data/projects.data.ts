@@ -120,7 +120,8 @@ export const projects: Project[] = [
     slug: "portal-do-prof-historia",
     description:
       "Portal do ProfHistória is a digital archive of undergraduate theses in History from UFRJ (Federal University of Rio de Janeiro), featuring research on Brazil, culture, social movements, and historical theory. The project preserves and democratizes access to academic work, serving as a resource for students, researchers, and the public. Bridging past and present, it turns knowledge into collective heritage.",
-    frontend: ["HTML", "CSS", "JavaScript", "Pug Template Engine"],
+    frontend: ["React.js", "Next.js", "TypeScript", "SCSS"],
+    backend: ["PostgreSQL", "Node.js", "Nest.js"],
     images: [
       {
         src: "/images/profhistoria-1.jpg",
@@ -218,7 +219,7 @@ export const projects: Project[] = [
       "Chakra UI",
       "Microfrontends",
     ],
-    backend: ["Node.js", "Nest.js"],
+    backend: ["Node.js", "Nest.js", "Mysql", "Redis"],
     images: [
       {
         src: "/images/gestora_de_itens_1.jpg",
